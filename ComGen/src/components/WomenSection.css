@@ -1,0 +1,4 @@
+/* Women Section Styles - inherits from MenSection.css */
+.bg-secondary {
+  background-color: var(--secondary);
+}

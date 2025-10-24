@@ -1,0 +1,93 @@
+/* CSS Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Brown Cream Aesthetic Palette */
+  --background: hsl(30, 30%, 92%); /* Cream */
+  --foreground: hsl(25, 20%, 20%); /* Deep brown */
+  --card: hsl(30, 30%, 98%); /* Lighter cream */
+  --primary: hsl(25, 30%, 35%); /* Rich brown */
+  --primary-foreground: hsl(30, 30%, 98%); /* Cream */
+  --secondary: hsl(30, 30%, 85%); /* Soft cream */
+  --muted: hsl(30, 20%, 80%); /* Muted cream */
+  --muted-foreground: hsl(25, 15%, 40%); /* Muted brown */
+  --accent: hsl(25, 30%, 35%); /* Uniform brown accent */
+  --border: hsl(25, 20%, 70%); /* Light brown border */
+  --shadow-soft: 0 4px 20px -2px rgba(120, 90, 60, 0.10);
+  --shadow-hover: 0 8px 30px -4px rgba(120, 90, 60, 0.16);
+  --shadow-premium: 0 10px 40px -10px rgba(120, 90, 60, 0.22);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: 'Inter', 'Playfair Display', serif;
+  background: linear-gradient(120deg, var(--background) 0%, var(--secondary) 60%, var(--card) 100%);
+  color: var(--foreground);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sneakerFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 14ch; }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--primary); }
+}
+
+/* Utility Classes */
+.bg-cream { background-color: var(--cream); }
+.bg-secondary { background-color: var(--secondary); }
+.text-center { text-align: center; }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.gap-4 { gap: 1rem; }
+.mt-3 { margin-top: 0.75rem; }
+.mb-4 { margin-bottom: 1rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.text-lg { font-size: 1.125rem; }
+.font-medium { font-weight: 500; }
