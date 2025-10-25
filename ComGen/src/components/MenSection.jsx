@@ -1,8 +1,11 @@
 import React from 'react';
 import { ShoppingCart, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 import './MenSection.css';
 
 const MenSection = () => {
+  const { addToCart, isInCart } = useCart();
+
   const products = [
     {
       id: 1,
@@ -10,6 +13,12 @@ const MenSection = () => {
       price: 129,
       originalPrice: 179,
       category: 'Shirts',
+      stock: 10,
+      rating: 4.5,
+      reviews: 45,
+      images: {
+        main: 'https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?q=80&w=669&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+      },
       image: 'https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?q=80&w=669&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     },
     {
@@ -17,6 +26,12 @@ const MenSection = () => {
       name: 'Designer Coat',
       price: 399,
       category: 'Outerwear',
+      stock: 5,
+      rating: 4.8,
+      reviews: 23,
+      images: {
+        main: 'https://images.unsplash.com/photo-1715090364409-161e8dd5ab8e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+      },
       image: 'https://images.unsplash.com/photo-1715090364409-161e8dd5ab8e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     },
     {
@@ -25,9 +40,20 @@ const MenSection = () => {
       price: 89,
       originalPrice: 119,
       category: 'Polo Shirts',
+      stock: 15,
+      rating: 4.6,
+      reviews: 67,
+      images: {
+        main: 'https://dtcralphlauren.scene7.com/is/image/PoloGSI/s7-1352639_alternate10?$rl_4x5_pdp$'
+      },
       image: 'https://dtcralphlauren.scene7.com/is/image/PoloGSI/s7-1352639_alternate10?$rl_4x5_pdp$'
     }
   ];
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    // Cart will automatically open - no need for alert
+  };
 
   return (
     <section id="men" className="section">
@@ -57,9 +83,15 @@ const MenSection = () => {
               <div className="product-image">
                 <img src={product.image} alt={product.name} />
                 <div className="product-overlay">
-                  <button className="btn btn-primary">
+                  <button 
+                    className="btn btn-primary"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToCart(product);
+                    }}
+                  >
                     <ShoppingCart size={20} />
-                    Quick Shop
+                    {isInCart(product.id) ? 'Added to Cart' : 'Add to Cart'}
                   </button>
                   <button className="btn btn-outline" style={{ color: 'white', borderColor: 'rgba(255,255,255,0.3)' }}>
                     <Heart size={20} />

@@ -21,11 +21,13 @@
   font-weight: 700;
   color: var(--primary);
   margin-bottom: 0.5rem;
-  text-shadow: 0 2px 8px var(--muted);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .section-subtitle {
   color: var(--muted-foreground);
+  font-size: 1.125rem;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-nav {
@@ -94,7 +96,7 @@
 .product-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(38, 38, 38, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,6 +107,7 @@
 
 .product-card:hover .product-overlay {
   opacity: 1;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .product-info {
@@ -116,7 +119,8 @@
   font-weight: 600;
   color: var(--primary);
   margin-bottom: 0.5rem;
-  text-shadow: 0 1px 4px var(--muted);
+  text-shadow: none;
+  line-height: 1.4;
 }
 
 .product-price {
@@ -130,7 +134,7 @@
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--primary);
-  text-shadow: 0 1px 4px var(--muted);
+  text-shadow: none;
 }
 
 .price-original {

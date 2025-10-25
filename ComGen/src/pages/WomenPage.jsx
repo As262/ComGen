@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
-import { Eye, ShoppingCart, ShoppingBag, Heart, Grid3x3, List, Plus, SlidersHorizontal, X, Minus, Trash2 } from 'lucide-react';
+import { Eye, ShoppingCart, Heart, Grid3x3, List, Plus, SlidersHorizontal, X } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 import { womenProducts } from '../data/womenProducts';
 import './WomenPage.css';
 
 const WomenPage = () => {
+    const { addToCart } = useCart();
     const [filteredProducts, setFilteredProducts] = useState([...womenProducts]);
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 12;
-    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('womenCart')) || []);
     const [wishlist, setWishlist] = useState(JSON.parse(localStorage.getItem('womenWishlist')) || []);
     const [currentView, setCurrentView] = useState('grid');
     const [filtersActive, setFiltersActive] = useState(false);
     const [quickViewProduct, setQuickViewProduct] = useState(null);
-    const [cartSidebarActive, setCartSidebarActive] = useState(false);
     const [selectedSize, setSelectedSize] = useState('M');
     const [selectedColor, setSelectedColor] = useState('');
     const [filters, setFilters] = useState({
@@ -21,10 +21,6 @@ const WomenPage = () => {
         brand: 'all',
         sort: 'featured'
     });
-
-    useEffect(() => {
-        localStorage.setItem('womenCart', JSON.stringify(cart));
-    }, [cart]);
 
     useEffect(() => {
         localStorage.setItem('womenWishlist', JSON.stringify(wishlist));
@@ -93,48 +89,21 @@ const WomenPage = () => {
         setCurrentPage(1);
     };
 
-    const addToCart = (productId, size = 'M', color = '') => {
+    const handleAddToCart = (productId, size = 'M', color = '') => {
         const product = womenProducts.find(p => p.id === productId);
         if (!product) return;
 
-        const existingItem = cart.find(item =>
-            item.id === productId && item.size === size && item.color === color
-        );
-
-        if (existingItem) {
-            setCart(cart.map(item =>
-                item.id === productId && item.size === size && item.color === color
-                    ? { ...item, quantity: item.quantity + 1 }
-                    : item
-            ));
-        } else {
-            setCart([...cart, {
-                id: productId,
-                name: product.name,
-                brand: product.brand,
-                price: product.price,
-                image: product.image,
-                quantity: 1,
-                size: size || 'M',
-                color: color || product.colors[0]
-            }]);
-        }
+        addToCart({
+            id: productId,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            category: product.category,
+            selectedSize: size || 'M',
+            selectedColor: color || product.colors[0]
+        });
+        
         showNotification(`${product.name} added to cart!`);
-    };
-
-    const removeFromCart = (index) => {
-        const newCart = cart.filter((_, i) => i !== index);
-        setCart(newCart);
-    };
-
-    const updateQuantity = (index, change) => {
-        const newCart = [...cart];
-        newCart[index].quantity += change;
-        if (newCart[index].quantity <= 0) {
-            removeFromCart(index);
-        } else {
-            setCart(newCart);
-        }
     };
 
     const toggleWishlist = (productId) => {
@@ -213,7 +182,7 @@ const WomenPage = () => {
                         )}
                     </div>
                     <div className="product-actions">
-                        <button className="btn btn-accent" onClick={() => addToCart(product.id)}>
+                        <button className="btn btn-accent" onClick={() => handleAddToCart(product.id)}>
                             <ShoppingCart size={20} />
                             Add to Cart
                         </button>
@@ -230,7 +199,6 @@ const WomenPage = () => {
     const startIndex = (currentPage - 1) * productsPerPage;
     const endIndex = startIndex + productsPerPage;
     const productsToShow = filteredProducts.slice(startIndex, endIndex);
-    const cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
     return (
         <div className="women-page">
@@ -443,7 +411,7 @@ const WomenPage = () => {
                                     <button
                                         className="btn btn-primary add-to-cart-btn"
                                         onClick={() => {
-                                            addToCart(quickViewProduct.id, selectedSize, selectedColor || quickViewProduct.colors[0]);
+                                            handleAddToCart(quickViewProduct.id, selectedSize, selectedColor || quickViewProduct.colors[0]);
                                             setQuickViewProduct(null);
                                         }}
                                     >
@@ -460,78 +428,6 @@ const WomenPage = () => {
                     </div>
                 </div>
             )}
-
-            {/* Cart Sidebar */}
-            <div className={`cart-sidebar ${cartSidebarActive ? 'active' : ''}`}>
-                <div className="cart-header">
-                    <h3>Shopping Cart</h3>
-                    <button className="cart-close" onClick={() => setCartSidebarActive(false)}>
-                        <X size={24} />
-                    </button>
-                </div>
-
-                <div className="cart-content">
-                    {cart.length === 0 ? (
-                        <div className="empty-cart">
-                            <ShoppingBag size={48} />
-                            <p>Your cart is empty</p>
-                            <button className="btn btn-primary" onClick={() => setCartSidebarActive(false)}>
-                                Continue Shopping
-                            </button>
-                        </div>
-                    ) : (
-                        cart.map((item, index) => (
-                            <div key={index} className="cart-item">
-                                <div className="cart-item-image">
-                                    <img src={item.image} alt={item.name} />
-                                </div>
-                                <div className="cart-item-details">
-                                    <div className="cart-item-name">{item.name}</div>
-                                    <div className="cart-item-options">Size: {item.size}, Color: {item.color}</div>
-                                    <div className="cart-item-price">${item.price}</div>
-                                    <div className="cart-item-actions">
-                                        <button className="quantity-btn" onClick={() => updateQuantity(index, -1)}>
-                                            <Minus size={16} />
-                                        </button>
-                                        <span className="quantity-display">{item.quantity}</span>
-                                        <button className="quantity-btn" onClick={() => updateQuantity(index, 1)}>
-                                            <Plus size={16} />
-                                        </button>
-                                        <button className="remove-btn" onClick={() => removeFromCart(index)}>
-                                            <Trash2 size={16} />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        ))
-                    )}
-                </div>
-
-                {cart.length > 0 && (
-                    <div className="cart-footer">
-                        <div className="cart-total">
-                            <div className="total-line">
-                                <span>Subtotal:</span>
-                                <span>${cartTotal.toFixed(2)}</span>
-                            </div>
-                            <div className="total-line">
-                                <span>Shipping:</span>
-                                <span>Free</span>
-                            </div>
-                            <div className="total-line total-main">
-                                <span>Total:</span>
-                                <span>${cartTotal.toFixed(2)}</span>
-                            </div>
-                        </div>
-                        <div className="cart-actions">
-                            <button className="btn btn-outline" onClick={() => setCartSidebarActive(false)}>
-                                Continue Shopping
-                            </button>
-                            <button className="btn btn-primary">Checkout</button>
-                        </div>
-                    </div>
-                )}
-            </div>
         </div>
     );
 };

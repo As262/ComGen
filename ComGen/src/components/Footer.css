@@ -22,11 +22,12 @@
     font-size: 1.875rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    color: white;
 }
 
 .newsletter-subtitle {
     font-size: 1.125rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: white;
     margin-bottom: 2rem;
 }
 

@@ -1,0 +1,729 @@
+{
+  "products": [
+    {
+      "id": "men-shirt-001",
+      "name": "Premium Cotton Dress Shirt",
+      "description": "Crafted from premium Egyptian cotton with a modern slim fit. Perfect for professional settings and formal occasions. Features mother-of-pearl buttons and reinforced stitching.",
+      "price": 89.99,
+      "originalPrice": 119.99,
+      "discount": 25,
+      "category": "men",
+      "subcategory": "shirts",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?q=80&w=669&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?q=80&w=669&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=669&auto=format&fit=crop"
+        ]
+      },
+      "stock": 45,
+      "rating": 4.8,
+      "reviews": 124,
+      "specifications": {
+        "brand": "ComGen",
+        "material": "100% Egyptian Cotton",
+        "fit": "Slim Fit",
+        "care": "Machine Wash Cold"
+      },
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "colors": ["White", "Light Blue", "Navy"],
+      "tags": ["new", "professional", "formal"],
+      "featured": true,
+      "createdAt": "2024-10-15"
+    },
+    {
+      "id": "men-jeans-001",
+      "name": "Slim Fit Dark Wash Jeans",
+      "description": "Modern slim-fit jeans with premium denim fabric and comfortable stretch. Perfect for casual and smart-casual looks. Features five-pocket styling and riveted stress points.",
+      "price": 128.99,
+      "originalPrice": 159.99,
+      "discount": 19,
+      "category": "men",
+      "subcategory": "pants",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=626&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=626&auto=format&fit=crop"
+        ]
+      },
+      "stock": 67,
+      "rating": 4.6,
+      "reviews": 89,
+      "specifications": {
+        "brand": "Premium Denim",
+        "material": "98% Cotton, 2% Elastane",
+        "fit": "Slim Fit",
+        "care": "Machine Wash Cold, Hang Dry"
+      },
+      "sizes": ["28", "30", "32", "34", "36", "38"],
+      "colors": ["Dark Blue", "Black", "Grey"],
+      "tags": ["sale", "casual", "bestseller"],
+      "featured": false,
+      "createdAt": "2024-09-20"
+    },
+    {
+      "id": "men-jacket-001",
+      "name": "Italian Leather Jacket",
+      "description": "Genuine Italian leather jacket with timeless design. Handcrafted with attention to detail and superior quality. Features asymmetric zipper closure and multiple pockets.",
+      "price": 299.99,
+      "originalPrice": null,
+      "discount": 0,
+      "category": "men",
+      "subcategory": "jackets",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=625&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=625&auto=format&fit=crop"
+        ]
+      },
+      "stock": 23,
+      "rating": 4.9,
+      "reviews": 67,
+      "specifications": {
+        "brand": "Classic Leather Co.",
+        "material": "100% Genuine Italian Leather",
+        "fit": "Regular Fit",
+        "care": "Professional Leather Cleaning Only"
+      },
+      "sizes": ["S", "M", "L", "XL"],
+      "colors": ["Black", "Brown", "Cognac"],
+      "tags": ["featured", "luxury", "premium"],
+      "featured": true,
+      "createdAt": "2024-10-01"
+    },
+    {
+      "id": "men-sweater-001",
+      "name": "Cashmere Blend Sweater",
+      "description": "Luxurious cashmere blend sweater with a comfortable crew neck design. Perfect for layering or wearing alone. Soft, warm, and incredibly comfortable.",
+      "price": 156.99,
+      "originalPrice": 199.99,
+      "discount": 22,
+      "category": "men",
+      "subcategory": "shirts",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1571945153237-4929e783af4a?q=80&w=687&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1571945153237-4929e783af4a?q=80&w=687&auto=format&fit=crop"
+        ]
+      },
+      "stock": 56,
+      "rating": 4.7,
+      "reviews": 156,
+      "specifications": {
+        "brand": "ComGen",
+        "material": "70% Wool, 30% Cashmere",
+        "fit": "Regular Fit",
+        "care": "Hand Wash Cold or Dry Clean"
+      },
+      "sizes": ["S", "M", "L", "XL"],
+      "colors": ["Navy", "Grey", "Charcoal", "Burgundy"],
+      "tags": ["sale", "winter", "luxury"],
+      "featured": false,
+      "createdAt": "2024-09-15"
+    },
+    {
+      "id": "men-chinos-001",
+      "name": "Tailored Chino Pants",
+      "description": "Classic tailored chinos with a modern fit. Versatile enough for office wear or weekend casual. Features stretch fabric for all-day comfort.",
+      "price": 79.99,
+      "originalPrice": null,
+      "discount": 0,
+      "category": "men",
+      "subcategory": "pants",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?q=80&w=687&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?q=80&w=687&auto=format&fit=crop"
+        ]
+      },
+      "stock": 89,
+      "rating": 4.5,
+      "reviews": 203,
+      "specifications": {
+        "brand": "Modern Wear",
+        "material": "97% Cotton, 3% Elastane",
+        "fit": "Modern Fit",
+        "care": "Machine Wash Cold"
+      },
+      "sizes": ["28", "30", "32", "34", "36", "38"],
+      "colors": ["Khaki", "Navy", "Black", "Olive"],
+      "tags": ["versatile", "casual", "office"],
+      "featured": false,
+      "createdAt": "2024-08-30"
+    },
+    {
+      "id": "men-watch-001",
+      "name": "Luxury Swiss Watch",
+      "description": "Swiss-made luxury timepiece with automatic movement and sapphire crystal. A perfect blend of elegance and precision. Water-resistant to 100 meters.",
+      "price": 449.99,
+      "originalPrice": 599.99,
+      "discount": 25,
+      "category": "men",
+      "subcategory": "accessories",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?q=80&w=688&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?q=80&w=688&auto=format&fit=crop"
+        ]
+      },
+      "stock": 15,
+      "rating": 4.9,
+      "reviews": 78,
+      "specifications": {
+        "brand": "Premium Timepieces",
+        "material": "Stainless Steel",
+        "movement": "Automatic",
+        "warranty": "2 Years International"
+      },
+      "sizes": ["One Size"],
+      "colors": ["Silver", "Gold", "Black"],
+      "tags": ["sale", "luxury", "featured"],
+      "featured": true,
+      "createdAt": "2024-10-10"
+    },
+    {
+      "id": "women-dress-001",
+      "name": "Elegant Silk Evening Dress",
+      "description": "Luxurious silk evening dress with elegant draping and timeless sophistication. Perfect for special occasions and formal events. Features invisible zipper and fully lined.",
+      "price": 249.99,
+      "originalPrice": 329.99,
+      "discount": 24,
+      "category": "women",
+      "subcategory": "dresses",
+      "images": {
+        "main": "/women images/Elegant Silk Evening Dress.jpg",
+        "gallery": [
+          "/women images/Elegant Silk Evening Dress.jpg"
+        ]
+      },
+      "stock": 34,
+      "rating": 4.9,
+      "reviews": 156,
+      "specifications": {
+        "brand": "ComGen",
+        "material": "100% Silk",
+        "fit": "A-Line",
+        "care": "Dry Clean Only"
+      },
+      "sizes": ["XS", "S", "M", "L", "XL"],
+      "colors": ["Black", "Navy", "Burgundy", "Emerald"],
+      "tags": ["featured", "formal", "luxury"],
+      "featured": true,
+      "createdAt": "2024-10-12"
+    },
+    {
+      "id": "women-sweater-001",
+      "name": "Cashmere Blend Sweater",
+      "description": "Soft cashmere blend sweater with a relaxed fit. Perfect for layering or wearing alone during cooler weather. Ultra-soft and luxurious feel.",
+      "price": 168.99,
+      "originalPrice": 219.99,
+      "discount": 23,
+      "category": "women",
+      "subcategory": "tops",
+      "images": {
+        "main": "/women images/Cashmere Blend Sweater.jpg",
+        "gallery": [
+          "/women images/Cashmere Blend Sweater.jpg"
+        ]
+      },
+      "stock": 67,
+      "rating": 4.7,
+      "reviews": 203,
+      "specifications": {
+        "brand": "Elegance",
+        "material": "70% Wool, 30% Cashmere",
+        "fit": "Relaxed Fit",
+        "care": "Hand Wash Cold or Dry Clean"
+      },
+      "sizes": ["XS", "S", "M", "L", "XL"],
+      "colors": ["Cream", "Blush", "Grey", "Camel"],
+      "tags": ["sale", "winter", "cozy"],
+      "featured": false,
+      "createdAt": "2024-09-25"
+    },
+    {
+      "id": "women-trousers-001",
+      "name": "High-Waisted Tailored Trousers",
+      "description": "Modern high-waisted trousers with a tailored fit. Versatile enough for office wear or evening occasions. Features side pockets and belt loops.",
+      "price": 128.99,
+      "originalPrice": null,
+      "discount": 0,
+      "category": "women",
+      "subcategory": "bottoms",
+      "images": {
+        "main": "/women images/High-Waisted Tailored Trousers.jpg",
+        "gallery": [
+          "/women images/High-Waisted Tailored Trousers.jpg"
+        ]
+      },
+      "stock": 78,
+      "rating": 4.6,
+      "reviews": 178,
+      "specifications": {
+        "brand": "Contemporary",
+        "material": "95% Polyester, 5% Elastane",
+        "fit": "Tailored Fit",
+        "care": "Machine Wash Cold"
+      },
+      "sizes": ["24", "26", "28", "30", "32", "34"],
+      "colors": ["Black", "Navy", "Charcoal", "Beige"],
+      "tags": ["new", "professional", "versatile"],
+      "featured": false,
+      "createdAt": "2024-10-05"
+    },
+    {
+      "id": "women-handbag-001",
+      "name": "Designer Leather Handbag",
+      "description": "Premium leather handbag with gold hardware and spacious interior. A timeless piece that complements any outfit. Features multiple compartments and adjustable strap.",
+      "price": 389.99,
+      "originalPrice": 489.99,
+      "discount": 20,
+      "category": "women",
+      "subcategory": "accessories",
+      "images": {
+        "main": "/women images/Designer Leather Handbag.jpg",
+        "gallery": [
+          "/women images/Designer Leather Handbag.jpg"
+        ]
+      },
+      "stock": 29,
+      "rating": 4.8,
+      "reviews": 124,
+      "specifications": {
+        "brand": "Chic",
+        "material": "100% Genuine Leather",
+        "dimensions": "12\" x 10\" x 5\"",
+        "care": "Wipe Clean with Damp Cloth"
+      },
+      "sizes": ["One Size"],
+      "colors": ["Black", "Brown", "Tan", "Red"],
+      "tags": ["trending", "luxury", "accessories"],
+      "featured": true,
+      "createdAt": "2024-10-08"
+    },
+    {
+      "id": "women-midi-dress-001",
+      "name": "Floral Print Midi Dress",
+      "description": "Beautiful floral print midi dress with a flattering A-line silhouette. Perfect for daytime events and brunches. Features button-front closure and pockets.",
+      "price": 145.99,
+      "originalPrice": 189.99,
+      "discount": 23,
+      "category": "women",
+      "subcategory": "dresses",
+      "images": {
+        "main": "/women images/Floral Print Midi Dress.jpg",
+        "gallery": [
+          "/women images/Floral Print Midi Dress.jpg"
+        ]
+      },
+      "stock": 92,
+      "rating": 4.5,
+      "reviews": 267,
+      "specifications": {
+        "brand": "ComGen",
+        "material": "100% Cotton",
+        "fit": "A-Line",
+        "care": "Machine Wash Cold"
+      },
+      "sizes": ["XS", "S", "M", "L", "XL"],
+      "colors": ["Floral Blue", "Floral Pink", "Floral Green"],
+      "tags": ["sale", "summer", "casual"],
+      "featured": false,
+      "createdAt": "2024-09-10"
+    },
+    {
+      "id": "women-blazer-001",
+      "name": "Wool Blend Blazer",
+      "description": "Sophisticated wool blend blazer with structured shoulders and a tailored fit. Essential for professional wardrobe. Features notched lapels and front button closure.",
+      "price": 219.99,
+      "originalPrice": null,
+      "discount": 0,
+      "category": "women",
+      "subcategory": "outerwear",
+      "images": {
+        "main": "/women images/Wool Blend Blazer.avif",
+        "gallery": [
+          "/women images/Wool Blend Blazer.avif"
+        ]
+      },
+      "stock": 45,
+      "rating": 4.7,
+      "reviews": 145,
+      "specifications": {
+        "brand": "Elegance",
+        "material": "80% Wool, 20% Polyester",
+        "fit": "Tailored Fit",
+        "care": "Dry Clean Only"
+      },
+      "sizes": ["XS", "S", "M", "L", "XL"],
+      "colors": ["Black", "Navy", "Grey", "Camel"],
+      "tags": ["featured", "professional", "classic"],
+      "featured": true,
+      "createdAt": "2024-10-01"
+    },
+    {
+      "id": "shoes-sneakers-001",
+      "name": "Premium Leather Sneakers",
+      "description": "Handcrafted leather sneakers with modern design and superior comfort. Perfect for casual everyday wear. Features cushioned insole and durable rubber sole.",
+      "price": 139.99,
+      "originalPrice": 179.99,
+      "discount": 22,
+      "category": "shoes",
+      "subcategory": "sneakers",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=712&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=712&auto=format&fit=crop"
+        ]
+      },
+      "stock": 120,
+      "rating": 4.6,
+      "reviews": 342,
+      "specifications": {
+        "brand": "Urban Steps",
+        "material": "Genuine Leather",
+        "sole": "Rubber",
+        "care": "Wipe Clean"
+      },
+      "sizes": ["6", "7", "8", "9", "10", "11", "12"],
+      "colors": ["White", "Black", "Navy", "Grey"],
+      "tags": ["sale", "casual", "bestseller"],
+      "featured": false,
+      "createdAt": "2024-09-18"
+    },
+    {
+      "id": "shoes-heels-001",
+      "name": "Classic Black Pumps",
+      "description": "Elegant black pumps with 3-inch heel. Perfect for professional and formal occasions. Features cushioned footbed and non-slip sole.",
+      "price": 119.99,
+      "originalPrice": 149.99,
+      "discount": 20,
+      "category": "shoes",
+      "subcategory": "heels",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=680&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=680&auto=format&fit=crop"
+        ]
+      },
+      "stock": 67,
+      "rating": 4.7,
+      "reviews": 198,
+      "specifications": {
+        "brand": "Elegance Footwear",
+        "material": "Patent Leather",
+        "heel": "3 inches",
+        "care": "Wipe Clean"
+      },
+      "sizes": ["5", "6", "7", "8", "9", "10"],
+      "colors": ["Black", "Nude", "Red"],
+      "tags": ["sale", "formal", "professional"],
+      "featured": false,
+      "createdAt": "2024-09-22"
+    },
+    {
+      "id": "shoes-boots-001",
+      "name": "Leather Ankle Boots",
+      "description": "Stylish leather ankle boots with block heel. Versatile design works with any outfit. Features side zipper and cushioned insole.",
+      "price": 189.99,
+      "originalPrice": null,
+      "discount": 0,
+      "category": "shoes",
+      "subcategory": "boots",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=687&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=687&auto=format&fit=crop"
+        ]
+      },
+      "stock": 54,
+      "rating": 4.8,
+      "reviews": 167,
+      "specifications": {
+        "brand": "Urban Steps",
+        "material": "100% Leather",
+        "heel": "2 inches",
+        "care": "Leather Conditioner"
+      },
+      "sizes": ["5", "6", "7", "8", "9", "10"],
+      "colors": ["Black", "Brown", "Tan"],
+      "tags": ["new", "fall", "versatile"],
+      "featured": true,
+      "createdAt": "2024-10-15"
+    },
+    {
+      "id": "appliances-coffee-001",
+      "name": "Premium Espresso Machine",
+      "description": "Professional-grade espresso machine with 15-bar pressure. Makes barista-quality coffee at home. Features milk frother and programmable settings.",
+      "price": 399.99,
+      "originalPrice": 499.99,
+      "discount": 20,
+      "category": "appliances",
+      "subcategory": "kitchen",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?q=80&w=688&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?q=80&w=688&auto=format&fit=crop"
+        ]
+      },
+      "stock": 34,
+      "rating": 4.8,
+      "reviews": 234,
+      "specifications": {
+        "brand": "BrewMaster",
+        "power": "1450W",
+        "capacity": "1.5L",
+        "warranty": "2 Years"
+      },
+      "sizes": ["One Size"],
+      "colors": ["Stainless Steel", "Black", "Red"],
+      "tags": ["sale", "kitchen", "featured"],
+      "featured": true,
+      "createdAt": "2024-10-05"
+    },
+    {
+      "id": "appliances-blender-001",
+      "name": "High-Speed Blender",
+      "description": "Powerful 1200W blender with 6 preset programs. Perfect for smoothies, soups, and more. Features self-cleaning function and BPA-free container.",
+      "price": 199.99,
+      "originalPrice": 249.99,
+      "discount": 20,
+      "category": "appliances",
+      "subcategory": "kitchen",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1585515320310-259814833e62?q=80&w=687&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1585515320310-259814833e62?q=80&w=687&auto=format&fit=crop"
+        ]
+      },
+      "stock": 78,
+      "rating": 4.6,
+      "reviews": 456,
+      "specifications": {
+        "brand": "BlendPro",
+        "power": "1200W",
+        "capacity": "2L",
+        "warranty": "3 Years"
+      },
+      "sizes": ["One Size"],
+      "colors": ["Black", "Silver", "White"],
+      "tags": ["sale", "kitchen", "bestseller"],
+      "featured": false,
+      "createdAt": "2024-09-15"
+    },
+    {
+      "id": "appliances-vacuum-001",
+      "name": "Cordless Vacuum Cleaner",
+      "description": "Powerful cordless vacuum with HEPA filtration. Up to 60 minutes runtime. Features multiple attachments and LED display.",
+      "price": 299.99,
+      "originalPrice": 399.99,
+      "discount": 25,
+      "category": "appliances",
+      "subcategory": "home",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=687&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=687&auto=format&fit=crop"
+        ]
+      },
+      "stock": 45,
+      "rating": 4.7,
+      "reviews": 312,
+      "specifications": {
+        "brand": "CleanTech",
+        "runtime": "60 minutes",
+        "filtration": "HEPA",
+        "warranty": "2 Years"
+      },
+      "sizes": ["One Size"],
+      "colors": ["Blue", "Red", "Grey"],
+      "tags": ["sale", "home", "popular"],
+      "featured": false,
+      "createdAt": "2024-09-28"
+    },
+    {
+      "id": "appliances-airfryer-001",
+      "name": "Digital Air Fryer",
+      "description": "8-quart digital air fryer with 8 preset cooking functions. Cook healthier meals with 85% less fat. Features non-stick basket and dishwasher-safe parts.",
+      "price": 149.99,
+      "originalPrice": 199.99,
+      "discount": 25,
+      "category": "appliances",
+      "subcategory": "kitchen",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?q=80&w=680&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?q=80&w=680&auto=format&fit=crop"
+        ]
+      },
+      "stock": 89,
+      "rating": 4.8,
+      "reviews": 567,
+      "specifications": {
+        "brand": "HealthyCook",
+        "capacity": "8 Quarts",
+        "power": "1700W",
+        "warranty": "1 Year"
+      },
+      "sizes": ["One Size"],
+      "colors": ["Black", "White", "Stainless Steel"],
+      "tags": ["sale", "kitchen", "trending"],
+      "featured": true,
+      "createdAt": "2024-10-10"
+    },
+    {
+      "id": "men-tuxedo-001",
+      "name": "Formal Tuxedo Set",
+      "description": "Complete tuxedo set with jacket, pants, and bow tie. Perfect for weddings, galas, and formal events. Expert tailoring with satin lapels.",
+      "price": 399.99,
+      "originalPrice": 499.99,
+      "discount": 20,
+      "category": "men",
+      "subcategory": "formal",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=640&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=640&auto=format&fit=crop"
+        ]
+      },
+      "stock": 28,
+      "rating": 4.8,
+      "reviews": 45,
+      "specifications": {
+        "brand": "ComGen",
+        "material": "Wool Blend",
+        "fit": "Classic Fit",
+        "care": "Dry Clean Only"
+      },
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "colors": ["Black", "Navy"],
+      "tags": ["featured", "formal", "luxury"],
+      "featured": true,
+      "createdAt": "2024-10-01"
+    },
+    {
+      "id": "men-polo-001",
+      "name": "Casual Polo Shirt",
+      "description": "Comfortable cotton polo shirt with a classic fit. Perfect for casual outings and weekend wear. Features three-button placket and ribbed collar.",
+      "price": 49.99,
+      "originalPrice": 69.99,
+      "discount": 29,
+      "category": "men",
+      "subcategory": "casual",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=687&auto=format&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=687&auto=format&fit=crop"
+        ]
+      },
+      "stock": 156,
+      "rating": 4.4,
+      "reviews": 234,
+      "specifications": {
+        "brand": "Modern Wear",
+        "material": "100% Cotton",
+        "fit": "Classic Fit",
+        "care": "Machine Wash Cold"
+      },
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "colors": ["White", "Navy", "Black", "Red"],
+      "tags": ["sale", "casual", "bestseller"],
+      "featured": false,
+      "createdAt": "2024-08-20"
+    },
+    {
+      "id": "women-cocktail-dress-001",
+      "name": "Cocktail Party Dress",
+      "description": "Stunning cocktail dress with sequin details and flattering silhouette. Perfect for parties and special occasions. Features adjustable straps and back zipper.",
+      "price": 289.99,
+      "originalPrice": 369.99,
+      "discount": 22,
+      "category": "women",
+      "subcategory": "formal",
+      "images": {
+        "main": "/women images/Cocktail Party Dress.jpg",
+        "gallery": [
+          "/women images/Cocktail Party Dress.jpg"
+        ]
+      },
+      "stock": 41,
+      "rating": 4.9,
+      "reviews": 98,
+      "specifications": {
+        "brand": "ComGen",
+        "material": "Polyester with Sequins",
+        "fit": "Bodycon",
+        "care": "Hand Wash Cold"
+      },
+      "sizes": ["XS", "S", "M", "L", "XL"],
+      "colors": ["Black", "Navy", "Emerald", "Rose Gold"],
+      "tags": ["featured", "party", "formal"],
+      "featured": true,
+      "createdAt": "2024-10-08"
+    },
+    {
+      "id": "women-tshirt-001",
+      "name": "Casual Cotton T-Shirt",
+      "description": "Soft organic cotton t-shirt with a relaxed fit. Perfect for everyday casual wear and weekend activities. Features crew neck and short sleeves.",
+      "price": 34.99,
+      "originalPrice": 49.99,
+      "discount": 30,
+      "category": "women",
+      "subcategory": "casual",
+      "images": {
+        "main": "/women images/Casual Cotton T-Shirt.jpg",
+        "gallery": [
+          "/women images/Casual Cotton T-Shirt.jpg"
+        ]
+      },
+      "stock": 234,
+      "rating": 4.3,
+      "reviews": 456,
+      "specifications": {
+        "brand": "Contemporary",
+        "material": "100% Organic Cotton",
+        "fit": "Relaxed Fit",
+        "care": "Machine Wash Cold"
+      },
+      "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+      "colors": ["White", "Black", "Grey", "Pink", "Blue"],
+      "tags": ["sale", "casual", "everyday"],
+      "featured": false,
+      "createdAt": "2024-08-15"
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat-men",
+      "name": "Men's Collection",
+      "slug": "men",
+      "image": "https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?q=80&w=1471&auto=format&fit=crop",
+      "description": "Discover our premium men's collection featuring shirts, pants, jackets, and accessories",
+      "subcategories": ["shirts", "pants", "jackets", "formal", "casual", "accessories"]
+    },
+    {
+      "id": "cat-women",
+      "name": "Women's Collection",
+      "slug": "women",
+      "image": "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1470&auto=format&fit=crop",
+      "description": "Explore our elegant women's collection featuring dresses, tops, outerwear, and more",
+      "subcategories": ["dresses", "tops", "bottoms", "outerwear", "formal", "casual", "accessories"]
+    },
+    {
+      "id": "cat-shoes",
+      "name": "Shoes",
+      "slug": "shoes",
+      "image": "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=1412&auto=format&fit=crop",
+      "description": "Step into style with our collection of sneakers, heels, boots, and more",
+      "subcategories": ["sneakers", "heels", "boots", "casual", "formal"]
+    },
+    {
+      "id": "cat-appliances",
+      "name": "Appliances",
+      "slug": "appliances",
+      "image": "https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=1468&auto=format&fit=crop",
+      "description": "Premium home and kitchen appliances to make your life easier",
+      "subcategories": ["kitchen", "home", "cleaning"]
+    }
+  ]
+}

@@ -1,23 +1,129 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Search, User, ShoppingBag, Menu, X } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+import { useProducts } from '../context/ProductContext';
+import { formatCurrency } from '../utils/helpers';
 import './Navbar.css';
 
-const Navbar = ({ cartCount, onCartToggle, onSearch }) => {
+const Navbar = () => {
+    const { cartItemCount, toggleCart } = useCart();
+    const { products, loading: productsLoading } = useProducts();
+    const navigate = useNavigate();
+    
     const [mobileMenuActive, setMobileMenuActive] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const [showSearchDropdown, setShowSearchDropdown] = useState(false);
+    const [searchLoading, setSearchLoading] = useState(false);
+    const [searchExpanded, setSearchExpanded] = useState(false);
+    
+    const searchRef = useRef(null);
+    const searchInputRef = useRef(null);
+    const searchTimeoutRef = useRef(null);
 
     const toggleMobileMenu = () => {
         setMobileMenuActive(!mobileMenuActive);
     };
 
-    const handleSearch = (e) => {
+    // Debounced search function
+    const performSearch = (query) => {
+        if (!query.trim()) {
+            setSearchResults([]);
+            setShowSearchDropdown(false);
+            setSearchLoading(false);
+            return;
+        }
+
+        setSearchLoading(true);
+        
+        // Clear previous timeout
+        if (searchTimeoutRef.current) {
+            clearTimeout(searchTimeoutRef.current);
+        }
+
+        // Debounce search by 300ms
+        searchTimeoutRef.current = setTimeout(() => {
+            const lowercaseQuery = query.toLowerCase().trim();
+            
+            const results = products.filter(product => 
+                product.name.toLowerCase().includes(lowercaseQuery) ||
+                product.category.toLowerCase().includes(lowercaseQuery) ||
+                product.subcategory?.toLowerCase().includes(lowercaseQuery) ||
+                product.description?.toLowerCase().includes(lowercaseQuery)
+            ).slice(0, 5); // Limit to 5 results
+
+            setSearchResults(results);
+            setShowSearchDropdown(true);
+            setSearchLoading(false);
+        }, 300);
+    };
+
+    const handleSearchChange = (e) => {
         const value = e.target.value;
         setSearchTerm(value);
-        if (onSearch) {
-            onSearch(value);
+        performSearch(value);
+    };
+
+    const handleSearchClear = () => {
+        setSearchTerm('');
+        setSearchResults([]);
+        setShowSearchDropdown(false);
+        setSearchExpanded(false);
+    };
+
+    const handleSearchExpand = () => {
+        setSearchExpanded(true);
+        setTimeout(() => {
+            searchInputRef.current?.focus();
+        }, 300);
+    };
+
+    const handleProductClick = (productId) => {
+        navigate(`/product/${productId}`);
+        handleSearchClear();
+    };
+
+    const handleViewAllResults = () => {
+        if (searchTerm.trim()) {
+            navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+            handleSearchClear();
         }
     };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        if (searchTerm.trim()) {
+            navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+            handleSearchClear();
+        }
+    };
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (searchRef.current && !searchRef.current.contains(event.target)) {
+                setShowSearchDropdown(false);
+                if (window.innerWidth > 768) {
+                    setSearchExpanded(false);
+                }
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (searchTimeoutRef.current) {
+                clearTimeout(searchTimeoutRef.current);
+            }
+        };
+    }, []);
 
     return (
         <nav className="navbar">
@@ -34,15 +140,81 @@ const Navbar = ({ cartCount, onCartToggle, onSearch }) => {
                     <li><a href="/#appliances">Appliances</a></li>
                 </ul>
 
-                <div className="search-container">
-                    <Search className="search-icon" size={16} />
-                    <input 
-                        type="text" 
-                        placeholder="Search products..." 
-                        className="search-input"
-                        value={searchTerm}
-                        onChange={handleSearch}
-                    />
+                <div className="search-container" ref={searchRef}>
+                    <form 
+                        onSubmit={handleSearchSubmit}
+                        className="search-form"
+                    >
+                        <Search className="search-icon" size={16} />
+                        <input 
+                            ref={searchInputRef}
+                            type="text" 
+                            placeholder="Search products..." 
+                            className="search-input"
+                            value={searchTerm}
+                            onChange={handleSearchChange}
+                            aria-label="Search products"
+                        />
+                        {searchTerm && (
+                            <button 
+                                type="button"
+                                className="search-clear"
+                                onClick={handleSearchClear}
+                                aria-label="Clear search"
+                            >
+                                <X size={16} />
+                            </button>
+                        )}
+                    </form>
+                    
+                    {/* Search Dropdown */}
+                    {showSearchDropdown && (
+                        <div className="search-dropdown">
+                            {searchLoading ? (
+                                <div className="search-dropdown-loading">
+                                    <div className="spinner"></div>
+                                    <span>Searching...</span>
+                                </div>
+                            ) : searchResults.length > 0 ? (
+                                <>
+                                    <div className="search-results">
+                                        {searchResults.map(product => (
+                                            <div 
+                                                key={product.id}
+                                                className="search-result-item"
+                                                onClick={() => handleProductClick(product.id)}
+                                            >
+                                                <img 
+                                                    src={product.images?.main || product.image} 
+                                                    alt={product.name}
+                                                    className="search-result-image"
+                                                />
+                                                <div className="search-result-info">
+                                                    <h4 className="search-result-name">{product.name}</h4>
+                                                    <p className="search-result-category">{product.category}</p>
+                                                    <p className="search-result-price">
+                                                        {formatCurrency(product.price)}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <button 
+                                        className="search-view-all"
+                                        onClick={handleViewAllResults}
+                                    >
+                                        View all results for "{searchTerm}"
+                                    </button>
+                                </>
+                            ) : (
+                                <div className="search-no-results">
+                                    <Search size={32} />
+                                    <p>No products found for "{searchTerm}"</p>
+                                    <small>Try different keywords</small>
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
 
                 <div className="nav-actions">
@@ -51,10 +223,12 @@ const Navbar = ({ cartCount, onCartToggle, onSearch }) => {
                         Login
                     </Link>
 
-                    <button className="btn btn-ghost cart-btn" style={{ position: 'relative' }} onClick={onCartToggle}>
+                    <Link to="/cart" className="btn btn-ghost cart-btn" style={{ position: 'relative' }}>
                         <ShoppingBag size={20} />
-                        <span className="cart-count">{cartCount}</span>
-                    </button>
+                        {cartItemCount > 0 && (
+                            <span className="cart-count">{cartItemCount}</span>
+                        )}
+                    </Link>
                 </div>
 
                 <button className="mobile-menu-btn" onClick={toggleMobileMenu}>
@@ -62,16 +236,25 @@ const Navbar = ({ cartCount, onCartToggle, onSearch }) => {
                 </button>
 
                 <div className={`mobile-menu ${mobileMenuActive ? 'active' : ''}`}>
-                    <div className="search-container">
+                    <form onSubmit={handleSearchSubmit} className="search-container mobile-search">
                         <Search className="search-icon" size={16} />
                         <input 
                             type="text" 
                             placeholder="Search products..." 
                             className="search-input"
                             value={searchTerm}
-                            onChange={handleSearch}
+                            onChange={handleSearchChange}
                         />
-                    </div>
+                        {searchTerm && (
+                            <button 
+                                type="button"
+                                className="search-clear"
+                                onClick={handleSearchClear}
+                            >
+                                <X size={16} />
+                            </button>
+                        )}
+                    </form>
                     
                     <ul className="nav-links">
                         <li><Link to="/" onClick={toggleMobileMenu}>Home</Link></li>
@@ -86,9 +269,9 @@ const Navbar = ({ cartCount, onCartToggle, onSearch }) => {
                             <User size={20} />
                             Login
                         </Link>
-                        <button className="btn btn-ghost" onClick={onCartToggle}>
+                        <button className="btn btn-ghost" onClick={toggleCart}>
                             <ShoppingBag size={20} />
-                            Cart ({cartCount})
+                            Cart ({cartItemCount})
                         </button>
                     </div>
                 </div>

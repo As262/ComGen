@@ -1,8 +1,11 @@
 import React from 'react';
 import { ShoppingCart, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 import './WomenSection.css';
 
 const WomenSection = () => {
+  const { addToCart, isInCart } = useCart();
+
   const products = [
     {
       id: 1,
@@ -10,6 +13,12 @@ const WomenSection = () => {
       price: 299,
       originalPrice: 399,
       category: 'Formals',
+      stock: 8,
+      rating: 4.7,
+      reviews: 34,
+      images: {
+        main: 'https://plus.unsplash.com/premium_photo-1675186049366-64a655f8f537?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+      },
       image: 'https://plus.unsplash.com/premium_photo-1675186049366-64a655f8f537?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     },
     {
@@ -17,6 +26,12 @@ const WomenSection = () => {
       name: 'Designer Dress',
       price: 599,
       category: 'Dresses',
+      stock: 12,
+      rating: 4.9,
+      reviews: 56,
+      images: {
+        main: 'https://img.clevup.in/352617/women-latest-new-dress-trending-1707799811540_SKU-3920_0.jpg?width=600&format=webp'
+      },
       image: 'https://img.clevup.in/352617/women-latest-new-dress-trending-1707799811540_SKU-3920_0.jpg?width=600&format=webp'
     },
     {
@@ -25,9 +40,20 @@ const WomenSection = () => {
       price: 149,
       originalPrice: 199,
       category: 'Suit',
+      stock: 20,
+      rating: 4.4,
+      reviews: 28,
+      images: {
+        main: 'https://img.faballey.com/images/Product/XKS04397Z/d3.jpg'
+      },
       image: 'https://img.faballey.com/images/Product/XKS04397Z/d3.jpg'
     }
   ];
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    // Cart will automatically open - no need for alert
+  };
 
   return (
     <section id="women" className="section bg-secondary">
@@ -57,9 +83,15 @@ const WomenSection = () => {
               <div className="product-image">
                 <img src={product.image} alt={product.name} />
                 <div className="product-overlay">
-                  <button className="btn btn-primary">
+                  <button 
+                    className="btn btn-primary"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToCart(product);
+                    }}
+                  >
                     <ShoppingCart size={20} />
-                    Quick Shop
+                    {isInCart(product.id) ? 'Added to Cart' : 'Add to Cart'}
                   </button>
                   <button className="btn btn-outline" style={{ color: 'white', borderColor: 'rgba(255,255,255,0.3)' }}>
                     <Heart size={20} />
