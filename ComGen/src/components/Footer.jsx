@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = ({ shopLinks, email }) => {
@@ -72,7 +73,7 @@ const Footer = ({ shopLinks, email }) => {
                         <div className="footer-section">
                             <h4>Customer Care</h4>
                             <ul className="footer-links">
-                                <li><a href="#contact">Contact Us</a></li>
+                                <li><Link to="/contact">Contact Us</Link></li>
                                 <li><a href="#size-guide">Size Guide</a></li>
                                 <li><a href="#shipping">Shipping Info</a></li>
                                 <li><a href="#returns">Returns & Exchanges</a></li>

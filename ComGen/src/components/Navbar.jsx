@@ -1,14 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, User, ShoppingBag, Menu, X } from 'lucide-react';
+import { Search, User, ShoppingBag, Menu, X, LogOut, UserCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useProducts } from '../context/ProductContext';
+import { useAuth } from '../context/AuthContext';
 import { formatCurrency } from '../utils/helpers';
 import './Navbar.css';
 
 const Navbar = () => {
     const { cartItemCount, toggleCart } = useCart();
     const { products, loading: productsLoading } = useProducts();
+    const { user, isAuthenticated, logout } = useAuth();
     const navigate = useNavigate();
     
     const [mobileMenuActive, setMobileMenuActive] = useState(false);
@@ -17,13 +19,25 @@ const Navbar = () => {
     const [showSearchDropdown, setShowSearchDropdown] = useState(false);
     const [searchLoading, setSearchLoading] = useState(false);
     const [searchExpanded, setSearchExpanded] = useState(false);
+    const [showUserMenu, setShowUserMenu] = useState(false);
     
     const searchRef = useRef(null);
     const searchInputRef = useRef(null);
     const searchTimeoutRef = useRef(null);
+    const userMenuRef = useRef(null);
 
     const toggleMobileMenu = () => {
         setMobileMenuActive(!mobileMenuActive);
+    };
+
+    const handleLogout = () => {
+        logout();
+        setShowUserMenu(false);
+        navigate('/');
+    };
+
+    const toggleUserMenu = () => {
+        setShowUserMenu(!showUserMenu);
     };
 
     // Debounced search function
@@ -108,6 +122,9 @@ const Navbar = () => {
                     setSearchExpanded(false);
                 }
             }
+            if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+                setShowUserMenu(false);
+            }
         };
 
         document.addEventListener('mousedown', handleClickOutside);
@@ -138,6 +155,7 @@ const Navbar = () => {
                     <li><Link to="/women">Women</Link></li>
                     <li><a href="/#shoes">Shoes</a></li>
                     <li><a href="/#appliances">Appliances</a></li>
+                    <li><Link to="/contact">Contact Us</Link></li>
                 </ul>
 
                 <div className="search-container" ref={searchRef}>
@@ -218,10 +236,43 @@ const Navbar = () => {
                 </div>
 
                 <div className="nav-actions">
-                    <Link to="/login" className="btn btn-ghost">
-                        <User size={20} />
-                        Login
-                    </Link>
+                    {isAuthenticated && user ? (
+                        <div className="user-menu-container" ref={userMenuRef}>
+                            <button 
+                                className="btn btn-ghost user-menu-trigger" 
+                                onClick={toggleUserMenu}
+                                aria-label="User menu"
+                            >
+                                <UserCircle size={20} />
+                                <span className="user-name">{user.name || 'User'}</span>
+                            </button>
+                            
+                            {showUserMenu && (
+                                <div className="user-dropdown">
+                                    <div className="user-dropdown-header">
+                                        <UserCircle size={32} />
+                                        <div>
+                                            <p className="user-dropdown-name">{user.name}</p>
+                                            <p className="user-dropdown-email">{user.email}</p>
+                                        </div>
+                                    </div>
+                                    <div className="user-dropdown-divider"></div>
+                                    <button 
+                                        className="user-dropdown-item" 
+                                        onClick={handleLogout}
+                                    >
+                                        <LogOut size={16} />
+                                        <span>Logout</span>
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <Link to="/login" className="btn btn-ghost">
+                            <User size={20} />
+                            Login
+                        </Link>
+                    )}
 
                     <Link to="/cart" className="btn btn-ghost cart-btn" style={{ position: 'relative' }}>
                         <ShoppingBag size={20} />
@@ -262,13 +313,27 @@ const Navbar = () => {
                         <li><Link to="/women" onClick={toggleMobileMenu}>Women</Link></li>
                         <li><a href="/#shoes" onClick={toggleMobileMenu}>Shoes</a></li>
                         <li><a href="/#appliances" onClick={toggleMobileMenu}>Appliances</a></li>
+                        <li><Link to="/contact" onClick={toggleMobileMenu}>Contact Us</Link></li>
                     </ul>
                     
                     <div className="nav-actions">
-                        <Link to="/login" className="btn btn-ghost">
-                            <User size={20} />
-                            Login
-                        </Link>
+                        {isAuthenticated && user ? (
+                            <>
+                                <div className="user-info-mobile">
+                                    <UserCircle size={20} />
+                                    <span>{user.name}</span>
+                                </div>
+                                <button className="btn btn-ghost" onClick={handleLogout}>
+                                    <LogOut size={20} />
+                                    Logout
+                                </button>
+                            </>
+                        ) : (
+                            <Link to="/login" className="btn btn-ghost">
+                                <User size={20} />
+                                Login
+                            </Link>
+                        )}
                         <button className="btn btn-ghost" onClick={toggleCart}>
                             <ShoppingBag size={20} />
                             Cart ({cartItemCount})

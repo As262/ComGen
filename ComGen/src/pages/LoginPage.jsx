@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import '../styles/LoginPage.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { login: authLogin, signup: authSignup } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const [email, setEmail] = useState('');
@@ -41,13 +43,15 @@ const LoginPage = () => {
       return;
     }
 
-    if (password === 'password123') {
-      alert('Login successful! Redirecting to home page...');
+    const result = authLogin(email, password);
+    
+    if (result.success) {
+      alert(result.message);
       setTimeout(() => {
         navigate('/');
       }, 1000);
     } else {
-      alert('Invalid password. Try "password123"');
+      alert(result.message);
     }
   };
 
@@ -70,8 +74,23 @@ const LoginPage = () => {
       return;
     }
 
-    alert('Account created successfully! Please sign in.');
-    showLoginForm();
+    if (signupPassword.length < 6) {
+      alert('Password must be at least 6 characters long');
+      return;
+    }
+
+    const result = authSignup(signupName, signupEmail, signupPassword);
+    
+    if (result.success) {
+      alert(result.message);
+      // Clear signup form
+      setSignupName('');
+      setSignupEmail('');
+      setSignupPassword('');
+      showLoginForm();
+    } else {
+      alert(result.message);
+    }
   };
 
   return (

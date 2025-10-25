@@ -61,7 +61,10 @@ export const STORAGE_KEYS = {
   CART: 'comgen_cart',
   WISHLIST: 'comgen_wishlist',
   RECENT_VIEWS: 'comgen_recent_views',
-  USER_PREFERENCES: 'comgen_preferences'
+  USER_PREFERENCES: 'comgen_preferences',
+  USER_SESSION: 'comgen_user_session',
+  REGISTERED_USERS: 'comgen_registered_users',
+  USER_CARTS: 'comgen_user_carts'
 };
 
 // Toast notification types

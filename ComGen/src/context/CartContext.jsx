@@ -8,6 +8,7 @@ import {
 } from '../utils/helpers';
 import { STORAGE_KEYS, MAX_CART_QUANTITY } from '../utils/constants';
 import ToastContainer from '../components/ToastContainer';
+import { useAuth } from './AuthContext';
 
 // Create Cart Context
 const CartContext = createContext();
@@ -17,17 +18,28 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [toasts, setToasts] = useState([]);
+  const { user, isAuthenticated } = useAuth();
 
-  // Load cart from localStorage on mount
+  // Get cart key for current user or guest
+  const getCartKey = () => {
+    if (isAuthenticated && user) {
+      return `${STORAGE_KEYS.USER_CARTS}_${user.id}`;
+    }
+    return STORAGE_KEYS.CART; // Guest cart
+  };
+
+  // Load cart from localStorage on mount or when user changes
   useEffect(() => {
-    const savedCart = getFromLocalStorage(STORAGE_KEYS.CART, []);
+    const cartKey = getCartKey();
+    const savedCart = getFromLocalStorage(cartKey, []);
     setCartItems(savedCart);
-  }, []);
+  }, [user, isAuthenticated]);
 
   // Save cart to localStorage whenever it changes
   useEffect(() => {
-    saveToLocalStorage(STORAGE_KEYS.CART, cartItems);
-  }, [cartItems]);
+    const cartKey = getCartKey();
+    saveToLocalStorage(cartKey, cartItems);
+  }, [cartItems, user, isAuthenticated]);
 
   // Show toast notification
   const showToast = (message, type = 'success', duration = 3000) => {
