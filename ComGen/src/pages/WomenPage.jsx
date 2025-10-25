@@ -103,7 +103,7 @@ const WomenPage = () => {
             selectedColor: color || product.colors[0]
         });
         
-        showNotification(`${product.name} added to cart!`);
+        // Toast notification is handled by CartContext, no need for duplicate
     };
 
     const toggleWishlist = (productId) => {

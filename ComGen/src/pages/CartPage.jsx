@@ -51,7 +51,7 @@ const CartPage = () => {
 
                         <div className="cart-items-list">
                             {cartItems.map((item) => (
-                                <div key={item.cartItemId} className="cart-item-row">
+                                <div key={item.id} className="cart-item-row">
                                     <div className="cart-item-product">
                                         <div className="cart-item-image">
                                             <img src={item.image} alt={item.name} />
@@ -71,17 +71,17 @@ const CartPage = () => {
                                     <div className="cart-item-quantity">
                                         <button 
                                             className="quantity-btn"
-                                            onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
+                                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
                                             disabled={item.quantity <= 1}
                                         >
-                                            <Minus size={16} color="#000000" strokeWidth={3} />
+                                            <Minus size={18} strokeWidth={2.5} />
                                         </button>
                                         <span className="quantity-display">{item.quantity}</span>
                                         <button 
                                             className="quantity-btn"
-                                            onClick={() => updateQuantity(item.cartItemId, item.quantity + 1)}
+                                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
                                         >
-                                            <Plus size={16} color="#000000" strokeWidth={3} />
+                                            <Plus size={18} strokeWidth={2.5} />
                                         </button>
                                     </div>
 
@@ -92,10 +92,10 @@ const CartPage = () => {
                                     <div className="cart-item-actions">
                                         <button 
                                             className="remove-btn"
-                                            onClick={() => removeFromCart(item.cartItemId)}
+                                            onClick={() => removeFromCart(item.id)}
                                             aria-label="Remove item"
                                         >
-                                            <Trash2 size={20} color="#ef4444" strokeWidth={2} />
+                                            <Trash2 size={20} strokeWidth={2} />
                                         </button>
                                     </div>
                                 </div>

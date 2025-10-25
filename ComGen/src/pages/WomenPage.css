@@ -500,19 +500,20 @@
 
 .size-btn {
     padding: 0.75rem 1rem;
-    border: 1px solid var(--border);
+    border: 2px solid #000000;
     background: white;
     border-radius: 0.5rem;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
+    color: #000000;
     transition: var(--transition-smooth);
 }
 
 .size-btn:hover,
 .size-btn.selected {
-    background: var(--accent);
+    background: #000000;
     color: white;
-    border-color: var(--accent);
+    border-color: #000000;
 }
 
 .color-btn {

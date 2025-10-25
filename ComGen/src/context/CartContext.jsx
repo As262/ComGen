@@ -7,6 +7,7 @@ import {
   calculateCartItemCount 
 } from '../utils/helpers';
 import { STORAGE_KEYS, MAX_CART_QUANTITY } from '../utils/constants';
+import ToastContainer from '../components/ToastContainer';
 
 // Create Cart Context
 const CartContext = createContext();
@@ -15,6 +16,7 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [toasts, setToasts] = useState([]);
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -27,13 +29,34 @@ export const CartProvider = ({ children }) => {
     saveToLocalStorage(STORAGE_KEYS.CART, cartItems);
   }, [cartItems]);
 
+  // Show toast notification
+  const showToast = (message, type = 'success', duration = 3000) => {
+    const id = Date.now() + Math.random(); // More unique ID
+    const newToast = { id, message, type, duration };
+    setToasts(prev => {
+      // Prevent duplicate messages
+      const isDuplicate = prev.some(toast => toast.message === message);
+      if (isDuplicate) return prev;
+      return [...prev, newToast];
+    });
+    return id;
+  };
+
+  // Hide toast
+  const hideToast = (id) => {
+    setToasts(prev => prev.filter(toast => toast.id !== id));
+  };
+
   // Add item to cart
   const addToCart = (product, quantity = 1) => {
+    let itemAdded = false;
+    
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === product.id);
 
       if (existingItem) {
         // Update quantity if item already exists
+        itemAdded = true;
         return prevItems.map(item =>
           item.id === product.id
             ? { 
@@ -44,6 +67,7 @@ export const CartProvider = ({ children }) => {
         );
       } else {
         // Add new item to cart
+        itemAdded = true;
         return [...prevItems, { 
           ...product, 
           quantity: Math.min(quantity, MAX_CART_QUANTITY),
@@ -52,7 +76,10 @@ export const CartProvider = ({ children }) => {
       }
     });
     
-    // Don't auto-open cart - user can click cart icon to view
+    // Show success toast
+    if (itemAdded) {
+      showToast(`${product.name} added to cart!`, 'success', 3000);
+    }
   };
 
   // Remove item from cart
@@ -176,10 +203,16 @@ export const CartProvider = ({ children }) => {
     getItemQuantity,
     toggleCart,
     openCart,
-    closeCart
+    closeCart,
+    showToast
   };
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={value}>
+      {children}
+      <ToastContainer toasts={toasts} onClose={hideToast} />
+    </CartContext.Provider>
+  );
 };
 
 CartProvider.propTypes = {

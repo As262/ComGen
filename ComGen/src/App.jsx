@@ -4,6 +4,7 @@ import { ProductProvider } from './context/ProductContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CartSidebar from './components/CartSidebar';
+import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import MenPage from './pages/MenPage';
@@ -16,6 +17,7 @@ function App() {
         <ProductProvider>
             <CartProvider>
                 <Router>
+                    <ScrollToTop />
                     <div className="App">
                         <Navbar />
                         <CartSidebar />
