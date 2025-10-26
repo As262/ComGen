@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { ArrowRight, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../styles/LoginPage.css';
@@ -117,7 +117,7 @@ const LoginPage = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <button className="arrow-btn" onClick={showPasswordStep}>
-                  <ChevronRight size={16} />
+                  <ArrowRight size={32} />
                 </button>
               </div>
             </div>
@@ -164,7 +164,7 @@ const LoginPage = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <button className="arrow-btn" onClick={login}>
-                  <ChevronRight size={16} />
+                  <ArrowRight size={32} />
                 </button>
               </div>
             </div>
@@ -223,7 +223,7 @@ const LoginPage = () => {
                 onChange={(e) => setSignupPassword(e.target.value)}
               />
               <button className="arrow-btn" onClick={signup}>
-                <ChevronRight size={16} />
+                <ArrowRight size={32} />
               </button>
             </div>
           </div>

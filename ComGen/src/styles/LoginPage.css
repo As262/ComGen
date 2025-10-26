@@ -16,7 +16,7 @@
     background-size: cover, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
     background-position: center, top left, top right, bottom left, bottom right, center;
     background-repeat: no-repeat;
-    min-height: 100vh;
+    min-height: 101vh;
     padding-top: 4rem;
 }
 
@@ -50,6 +50,7 @@
         0 8px 32px rgba(0, 0, 0, 0.04),
         0 1px 2px rgba(0, 0, 0, 0.01),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    
 }
 
 .login-container.hide {
@@ -210,7 +211,8 @@ input::placeholder {
     height: 44px;
     position: absolute;
     right: 6px;
-    display: flex;
+    padding-left: 5px;
+    padding-top: 7px;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -227,12 +229,6 @@ input::placeholder {
         inset 0 1px 0 rgba(255,255,255,0.3);
 }
 
-.arrow-btn svg {
-    width: 16px;
-    height: 16px;
-    fill: white;
-    color: white;
-}
 
 .divider {
     display: flex;
