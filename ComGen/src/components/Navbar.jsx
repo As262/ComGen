@@ -153,8 +153,8 @@ const Navbar = () => {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/men">Men</Link></li>
                     <li><Link to="/women">Women</Link></li>
-                    <li><a href="/#shoes">Shoes</a></li>
-                    <li><a href="/#appliances">Appliances</a></li>
+                    <li><Link to="/shoes">Shoes</Link></li>
+                    <li><Link to="/appliances">Appliances</Link></li>
                     <li><Link to="/contact">Contact Us</Link></li>
                 </ul>
 
@@ -311,8 +311,8 @@ const Navbar = () => {
                         <li><Link to="/" onClick={toggleMobileMenu}>Home</Link></li>
                         <li><Link to="/men" onClick={toggleMobileMenu}>Men</Link></li>
                         <li><Link to="/women" onClick={toggleMobileMenu}>Women</Link></li>
-                        <li><a href="/#shoes" onClick={toggleMobileMenu}>Shoes</a></li>
-                        <li><a href="/#appliances" onClick={toggleMobileMenu}>Appliances</a></li>
+                        <li><Link to="/shoes" onClick={toggleMobileMenu}>Shoes</Link></li>
+                        <li><Link to="/appliances" onClick={toggleMobileMenu}>Appliances</Link></li>
                         <li><Link to="/contact" onClick={toggleMobileMenu}>Contact Us</Link></li>
                     </ul>
                     

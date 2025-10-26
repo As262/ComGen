@@ -10,6 +10,8 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import MenPage from './pages/MenPage';
 import WomenPage from './pages/WomenPage';
+import ShoesPage from './pages/ShoesPage';
+import AppliancesPage from './pages/AppliancesPage';
 import CartPage from './pages/CartPage';
 import ContactPage from './pages/ContactPage';
 import './App.css';
@@ -30,6 +32,8 @@ function App() {
                                     <Route path="/login" element={<LoginPage />} />
                                     <Route path="/men" element={<MenPage />} />
                                     <Route path="/women" element={<WomenPage />} />
+                                    <Route path="/shoes" element={<ShoesPage />} />
+                                    <Route path="/appliances" element={<AppliancesPage />} />
                                     <Route path="/cart" element={<CartPage />} />
                                     <Route path="/contact" element={<ContactPage />} />
                                 </Routes>
@@ -40,8 +44,8 @@ function App() {
                                     links: [
                                         { href: '/men', text: 'Men\'s Collection' },
                                         { href: '/women', text: 'Women\'s Collection' },
-                                        { href: '/#shoes', text: 'Shoes' },
-                                        { href: '/#appliances', text: 'Appliances' }
+                                        { href: '/shoes', text: 'Shoes' },
+                                        { href: '/appliances', text: 'Appliances' }
                                     ]
                                 }}
                                 email="hello@ComGenZ.com"
