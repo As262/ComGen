@@ -125,19 +125,16 @@ const ContactPage = () => {
         message: formData.message,
         order_number: formData.orderNumber || 'N/A',
         query_type: selectedQueryType,
-        to_email: 'your-email@example.com' // Replace with your email
+        to_email: 'avinavsaini336@gmail.com'
       };
 
-      // Initialize EmailJS (you'll need to set up an account and get these IDs)
-      // await emailjs.send(
-      //   'YOUR_SERVICE_ID',
-      //   'YOUR_TEMPLATE_ID',
-      //   templateParams,
-      //   'YOUR_PUBLIC_KEY'
-      // );
-
-      // For demo purposes, simulate email send
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Send email using EmailJS
+      await emailjs.send(
+        'service_230xp6i',      // Replace with your EmailJS Service ID
+        'template_weompro',     // Replace with your EmailJS Template ID
+        templateParams,
+        'R6hesPkP3GGjnn9kc'       // Replace with your EmailJS Public Key
+      );
 
       setSubmitStatus({ 
         type: 'success', 
