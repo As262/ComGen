@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShoppingCart, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import './WomenSection.css';
 
@@ -16,6 +16,8 @@ const WomenSection = () => {
       stock: 8,
       rating: 4.7,
       reviews: 34,
+      sizes: ['S', 'M', 'L', 'XL'],
+      colors: ['Baby Pink', 'White', 'Black'],
       images: {
         main: 'https://plus.unsplash.com/premium_photo-1675186049366-64a655f8f537?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
       },
@@ -29,6 +31,8 @@ const WomenSection = () => {
       stock: 12,
       rating: 4.9,
       reviews: 56,
+      sizes: ['S', 'M', 'L', 'XL'],
+      colors: ['Blue', 'Red', 'Black'],
       images: {
         main: 'https://img.clevup.in/352617/women-latest-new-dress-trending-1707799811540_SKU-3920_0.jpg?width=600&format=webp'
       },
@@ -43,6 +47,8 @@ const WomenSection = () => {
       stock: 20,
       rating: 4.4,
       reviews: 28,
+      sizes: ['S', 'M', 'L', 'XL'],
+      colors: ['Cream', 'Pink', 'Gold'],
       images: {
         main: 'https://img.faballey.com/images/Product/XKS04397Z/d3.jpg'
       },
@@ -51,7 +57,11 @@ const WomenSection = () => {
   ];
 
   const handleAddToCart = (product) => {
-    addToCart(product);
+    addToCart({
+      ...product,
+      selectedSize: product.sizes?.[0] || 'M',
+      selectedColor: product.colors?.[0] || 'Default'
+    });
     // Cart will automatically open - no need for alert
   };
 
@@ -62,14 +72,6 @@ const WomenSection = () => {
           <div>
             <h2 className="section-title">Women's Collection</h2>
             <p className="section-subtitle">Curated selections for the discerning individual</p>
-          </div>
-          <div className="carousel-nav">
-            <button className="carousel-btn">
-              <ChevronLeft size={20} />
-            </button>
-            <button className="carousel-btn">
-              <ChevronRight size={20} />
-            </button>
           </div>
         </div>
 
@@ -92,9 +94,6 @@ const WomenSection = () => {
                   >
                     <ShoppingCart size={20} />
                     {isInCart(product.id) ? 'Added to Cart' : 'Add to Cart'}
-                  </button>
-                  <button className="btn btn-outline" style={{ color: 'white', borderColor: 'rgba(255,255,255,0.3)' }}>
-                    <Heart size={20} />
                   </button>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Eye, ShoppingCart, Heart, Grid3x3, List, Plus, SlidersHorizontal, X } from 'lucide-react';
+import { Eye, ShoppingCart, Grid3x3, List, Plus, SlidersHorizontal, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { womenProducts } from '../data/womenProducts';
 import './WomenPage.css';
@@ -9,7 +9,6 @@ const WomenPage = () => {
     const [filteredProducts, setFilteredProducts] = useState([...womenProducts]);
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 12;
-    const [wishlist, setWishlist] = useState(JSON.parse(localStorage.getItem('womenWishlist')) || []);
     const [currentView, setCurrentView] = useState('grid');
     const [filtersActive, setFiltersActive] = useState(false);
     const [quickViewProduct, setQuickViewProduct] = useState(null);
@@ -21,10 +20,6 @@ const WomenPage = () => {
         brand: 'all',
         sort: 'featured'
     });
-
-    useEffect(() => {
-        localStorage.setItem('womenWishlist', JSON.stringify(wishlist));
-    }, [wishlist]);
 
     const filterProducts = () => {
         let filtered = [...womenProducts];
@@ -106,41 +101,6 @@ const WomenPage = () => {
         // Toast notification is handled by CartContext, no need for duplicate
     };
 
-    const toggleWishlist = (productId) => {
-        if (wishlist.includes(productId)) {
-            setWishlist(wishlist.filter(id => id !== productId));
-            showNotification('Removed from wishlist');
-        } else {
-            setWishlist([...wishlist, productId]);
-            showNotification('Added to wishlist');
-        }
-    };
-
-    const showNotification = (message) => {
-        // Simple notification implementation
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.textContent = message;
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--accent);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: var(--shadow-premium);
-            z-index: 1001;
-            font-weight: 500;
-            animation: slideIn 0.3s ease;
-        `;
-        document.body.appendChild(notification);
-        setTimeout(() => {
-            notification.style.animation = 'slideOut 0.3s ease';
-            setTimeout(() => document.body.removeChild(notification), 300);
-        }, 3000);
-    };
-
     const ProductCard = ({ product }) => {
         const discountPercentage = product.originalPrice
             ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
@@ -158,9 +118,6 @@ const WomenPage = () => {
                         <button className="btn btn-primary" onClick={() => setQuickViewProduct(product)}>
                             <Eye size={20} />
                             Quick View
-                        </button>
-                        <button className="btn btn-outline" onClick={() => toggleWishlist(product.id)}>
-                            <Heart size={20} />
                         </button>
                     </div>
                 </div>
@@ -417,10 +374,6 @@ const WomenPage = () => {
                                     >
                                         <ShoppingCart size={20} />
                                         Add to Cart
-                                    </button>
-                                    <button className="btn btn-outline wishlist-btn" onClick={() => toggleWishlist(quickViewProduct.id)}>
-                                        <Heart size={20} />
-                                        Wishlist
                                     </button>
                                 </div>
                             </div>

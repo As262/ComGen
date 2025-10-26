@@ -12,7 +12,8 @@ const CartSidebar = () => {
     closeCart,
     removeFromCart,
     incrementQuantity,
-    decrementQuantity
+    decrementQuantity,
+    getCartItemKey
   } = useCart();
 
   if (!isCartOpen) return null;
@@ -47,18 +48,25 @@ const CartSidebar = () => {
               </button>
             </div>
           ) : (
-            cartItems.map(item => (
-              <div key={item.id} className="cart-item">
+            cartItems.map(item => {
+              const itemKey = getCartItemKey(item);
+              return (
+              <div key={itemKey} className="cart-item">
                 <img src={item.images?.main || item.image} alt={item.name} />
                 <div className="cart-item-details">
                   <h4>{item.name}</h4>
                   <p className="cart-item-category">{item.category}</p>
+                  {item.selectedSize && item.selectedColor && (
+                    <p className="cart-item-variant">
+                      {item.selectedSize} • {item.selectedColor}
+                    </p>
+                  )}
                   <p className="cart-item-price">
                     {formatCurrency(item.price)}
                   </p>
                   <div className="cart-item-quantity">
                     <button 
-                      onClick={() => decrementQuantity(item.id)}
+                      onClick={() => decrementQuantity(itemKey)}
                       aria-label="Decrease quantity"
                       disabled={item.quantity <= 1}
                     >
@@ -66,7 +74,7 @@ const CartSidebar = () => {
                     </button>
                     <span>{item.quantity}</span>
                     <button 
-                      onClick={() => incrementQuantity(item.id)}
+                      onClick={() => incrementQuantity(itemKey)}
                       aria-label="Increase quantity"
                     >
                       <Plus size={16} />
@@ -75,13 +83,14 @@ const CartSidebar = () => {
                 </div>
                 <button 
                   className="cart-item-remove"
-                  onClick={() => removeFromCart(item.id)}
+                  onClick={() => removeFromCart(itemKey)}
                   aria-label="Remove item"
                 >
                   <Trash2 size={20} />
                 </button>
               </div>
-            ))
+            );
+            })
           )}
         </div>
 
