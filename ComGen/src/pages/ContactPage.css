@@ -304,7 +304,7 @@
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #40e0bf 0%, #2dd4aa 100%);
+  background: #74543E;
   color: white;
   border: none;
   border-radius: 12px;
@@ -317,12 +317,12 @@
   justify-content: center;
   gap: 0.75rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(64, 224, 191, 0.3);
+  box-shadow: 0 4px 15px rgba(116, 84, 62, 0.3);
 }
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(64, 224, 191, 0.4);
+  box-shadow: 0 6px 25px rgba(116, 84, 62, 0.4);
 }
 
 .submit-btn:disabled {
