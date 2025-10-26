@@ -97,7 +97,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(64, 224, 191, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(116, 84, 62, 0.1), transparent);
   transition: left 0.5s ease;
 }
 
@@ -108,13 +108,13 @@
 .query-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-  border-color: #40e0bf;
+  border-color: #74543E;
 }
 
 .query-card.active {
-  border-color: #40e0bf;
-  background: linear-gradient(135deg, rgba(64, 224, 191, 0.05) 0%, rgba(64, 224, 191, 0.02) 100%);
-  box-shadow: 0 8px 32px rgba(64, 224, 191, 0.2);
+  border-color: #74543E;
+  background: linear-gradient(135deg, rgba(116, 84, 62, 0.05) 0%, rgba(116, 84, 62, 0.02) 100%);
+  box-shadow: 0 8px 32px rgba(116, 84, 62, 0.2);
 }
 
 .query-icon {
@@ -150,7 +150,7 @@
   right: 1.5rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #40e0bf;
+  color: #74543E;
   opacity: 0;
   transition: all 0.3s ease;
 }
@@ -198,11 +198,11 @@
 }
 
 .subcategory-btn:hover {
-  background: linear-gradient(135deg, #40e0bf 0%, #2dd4aa 100%);
+  background: linear-gradient(135deg, #74543E 0%, #5a3f2e 100%);
   color: white;
-  border-color: #40e0bf;
+  border-color: #74543E;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(64, 224, 191, 0.3);
+  box-shadow: 0 4px 12px rgba(116, 84, 62, 0.3);
 }
 
 /* Contact Form Section */
@@ -294,8 +294,8 @@
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #40e0bf;
-  box-shadow: 0 0 0 4px rgba(64, 224, 191, 0.1);
+  border-color: #74543E;
+  box-shadow: 0 0 0 4px rgba(116, 84, 62, 0.1);
   transform: translateY(-2px);
 }
 
@@ -381,7 +381,7 @@
 }
 
 .info-item svg {
-  color: #40e0bf;
+  color: #74543E;
   flex-shrink: 0;
   margin-top: 0.25rem;
 }
@@ -446,7 +446,7 @@
 }
 
 .faq-card:hover {
-  border-color: #40e0bf;
+  border-color: #74543E;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
@@ -463,7 +463,7 @@
 }
 
 .faq-icon {
-  color: #40e0bf;
+  color: #74543E;
   transition: transform 0.3s ease;
 }
 
@@ -511,19 +511,19 @@
 }
 
 .contact-cta a {
-  color: #40e0bf;
+  color: #74543E;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .contact-cta a:hover {
-  color: #2dd4aa;
+  color: #5a3f2e;
   text-decoration: underline;
 }
 
 .cta-btn {
-  background: linear-gradient(135deg, #40e0bf 0%, #2dd4aa 100%);
+  background: linear-gradient(135deg, #74543E 0%, #5a3f2e 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -532,12 +532,12 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(64, 224, 191, 0.3);
+  box-shadow: 0 4px 15px rgba(116, 84, 62, 0.3);
 }
 
 .cta-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(64, 224, 191, 0.4);
+  box-shadow: 0 6px 25px rgba(116, 84, 62, 0.4);
 }
 
 /* Animations */

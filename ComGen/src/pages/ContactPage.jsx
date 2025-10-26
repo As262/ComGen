@@ -35,7 +35,7 @@ const ContactPage = () => {
       id: 'order',
       title: 'Order Related Queries',
       icon: ShoppingBag,
-      color: '#40e0bf',
+      color: '#74543E',
       description: 'Track orders, returns, exchanges, delivery issues',
       subCategories: [
         'Track my order',
