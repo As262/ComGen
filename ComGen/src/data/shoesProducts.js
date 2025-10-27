@@ -9,7 +9,7 @@ export const shoesProducts = [
         category: "shoes",
         subcategory: "sneakers",
         images: {
-            main: "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=712&auto=format&fit=crop",
+            main: "https://images.unsplash.com/photo-1656085180791-0e634c8bd1e6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=646",
             gallery: [
                 "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=712&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1562183241-b937e95585b6?q=80&w=712&auto=format&fit=crop",
@@ -41,7 +41,7 @@ export const shoesProducts = [
         category: "shoes",
         subcategory: "heels",
         images: {
-            main: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=680&auto=format&fit=crop",
+            main: "https://images.unsplash.com/photo-1676838179247-6e60dba67d5c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
             gallery: [
                 "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=680&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1566479179817-c7c8faf2cf71?q=80&w=680&auto=format&fit=crop",
@@ -73,7 +73,7 @@ export const shoesProducts = [
         category: "shoes",
         subcategory: "boots",
         images: {
-            main: "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=687&auto=format&fit=crop",
+            main: "https://plus.unsplash.com/premium_photo-1729285270693-3131f27a56c0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8TGVhdGhlciUyMEFua2xlJTIwQm9vdHN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600",
             gallery: [
                 "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=687&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1596702962043-2fb6d412ac80?q=80&w=687&auto=format&fit=crop",
@@ -105,7 +105,7 @@ export const shoesProducts = [
         category: "shoes",
         subcategory: "sneakers",
         images: {
-            main: "https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=712&auto=format&fit=crop",
+            main: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3BvcnRzJTIwU2hvZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600",
             gallery: [
                 "https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=712&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=712&auto=format&fit=crop",
@@ -137,7 +137,7 @@ export const shoesProducts = [
         category: "shoes",
         subcategory: "heels",
         images: {
-            main: "https://images.unsplash.com/photo-1566479179817-c7c8faf2cf71?q=80&w=680&auto=format&fit=crop",
+            main: "https://plus.unsplash.com/premium_photo-1673977134574-95689f812241?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8U3RyYXBweSUyMFNhbmRhbCUyMEhlZWxzfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
             gallery: [
                 "https://images.unsplash.com/photo-1566479179817-c7c8faf2cf71?q=80&w=680&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=680&auto=format&fit=crop",
@@ -169,7 +169,7 @@ export const shoesProducts = [
         category: "shoes",
         subcategory: "boots",
         images: {
-            main: "https://images.unsplash.com/photo-1596702962043-2fb6d412ac80?q=80&w=687&auto=format&fit=crop",
+            main: "https://images.unsplash.com/photo-1608256255256-411200dde1ee?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fENvbWJhdCUyMFN0eWxlJTIwQm9vdHN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600",
             gallery: [
                 "https://images.unsplash.com/photo-1596702962043-2fb6d412ac80?q=80&w=687&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=687&auto=format&fit=crop",
@@ -201,7 +201,7 @@ export const shoesProducts = [
         category: "shoes",
         subcategory: "sneakers",
         images: {
-            main: "https://images.unsplash.com/photo-1562183241-b937e95585b6?q=80&w=712&auto=format&fit=crop",
+            main: "https://images.unsplash.com/photo-1700152587587-4811cb979692?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fENsYXNzaWMlMjBDYW52YXMlMjBTbmVha2Vyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
             gallery: [
                 "https://images.unsplash.com/photo-1562183241-b937e95585b6?q=80&w=712&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=712&auto=format&fit=crop",
@@ -233,7 +233,7 @@ export const shoesProducts = [
         category: "shoes",
         subcategory: "flats",
         images: {
-            main: "https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?q=80&w=680&auto=format&fit=crop",
+            main: "https://images.unsplash.com/photo-1682987228796-cdc66c167dcd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fEJhbGxldCUyMEZsYXRzfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
             gallery: [
                 "https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?q=80&w=680&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=680&auto=format&fit=crop",

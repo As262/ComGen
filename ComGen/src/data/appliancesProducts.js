@@ -9,7 +9,7 @@ export const appliancesProducts = [
         category: "appliances",
         subcategory: "kitchen",
         images: {
-            main: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?q=80&w=688&auto=format&fit=crop",
+            main: "https://images.unsplash.com/photo-1637029436347-e33bf98a5412?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8UHJlbWl1bSUyMEVzcHJlc3NvJTIwTWFjaGluZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
             gallery: [
                 "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?q=80&w=688&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=688&auto=format&fit=crop",
@@ -41,7 +41,7 @@ export const appliancesProducts = [
         category: "appliances",
         subcategory: "kitchen",
         images: {
-            main: "https://images.unsplash.com/photo-1585515320310-259814833e62?q=80&w=687&auto=format&fit=crop",
+            main: "https://images.unsplash.com/photo-1677327106545-5961f27335d6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SGlnaC1TcGVlZCUyMEJsZW5kZXIlMjBqdWljZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600",
             gallery: [
                 "https://images.unsplash.com/photo-1585515320310-259814833e62?q=80&w=687&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1570197788417-0e82375c9371?q=80&w=687&auto=format&fit=crop",
@@ -105,7 +105,7 @@ export const appliancesProducts = [
         category: "appliances",
         subcategory: "kitchen",
         images: {
-            main: "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?q=80&w=680&auto=format&fit=crop",
+            main: "https://plus.unsplash.com/premium_photo-1711684803379-f45ffd226412?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fEFpciUyMEZyeWVyfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
             gallery: [
                 "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?q=80&w=680&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1556909114-25c2b183c96c?q=80&w=680&auto=format&fit=crop",
@@ -137,7 +137,7 @@ export const appliancesProducts = [
         category: "appliances",
         subcategory: "kitchen",
         images: {
-            main: "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?q=80&w=687&auto=format&fit=crop",
+            main: "https://images.unsplash.com/photo-1655354439159-3a839b079786?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8U21hcnQlMjBNaWNyb3dhdmUlMjBPdmVufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
             gallery: [
                 "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?q=80&w=687&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1556909114-25c2b183c96c?q=80&w=687&auto=format&fit=crop",
@@ -169,7 +169,7 @@ export const appliancesProducts = [
         category: "appliances",
         subcategory: "kitchen",
         images: {
-            main: "https://images.unsplash.com/photo-1556909114-25c2b183c96c?q=80&w=687&auto=format&fit=crop",
+            main: "https://images.unsplash.com/photo-1758631130778-42d518bf13aa?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8RW5lcmd5JTIwRWZmaWNpZW50JTIwRGlzaHdhc2hlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
             gallery: [
                 "https://images.unsplash.com/photo-1556909114-25c2b183c96c?q=80&w=687&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?q=80&w=687&auto=format&fit=crop",
@@ -201,7 +201,7 @@ export const appliancesProducts = [
         category: "appliances",
         subcategory: "home",
         images: {
-            main: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=687&auto=format&fit=crop",
+            main: "https://plus.unsplash.com/premium_photo-1667520172423-fb404a06100a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8RnJvbnQlMjBMb2FkJTIwV2FzaGluZyUyME1hY2hpbmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600",
             gallery: [
                 "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=687&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=687&auto=format&fit=crop",
@@ -265,7 +265,7 @@ export const appliancesProducts = [
         category: "appliances",
         subcategory: "home",
         images: {
-            main: "https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=687&auto=format&fit=crop",
+            main: "https://images.unsplash.com/photo-1629248242719-c4d8b35fc3c9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8U21hcnQlMjBSb2JvdCUyMFZhY3V1bXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600",
             gallery: [
                 "https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=687&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=687&auto=format&fit=crop",
