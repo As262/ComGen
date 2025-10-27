@@ -13,6 +13,11 @@ import { useAuth } from './AuthContext';
 // Create Cart Context
 const CartContext = createContext();
 
+// Helper function to create unique cart item identifier
+const getCartItemKey = (item) => {
+  return `${item.id}_${item.selectedSize || 'default'}_${item.selectedColor || 'default'}`;
+};
+
 // Cart Provider Component
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
@@ -64,13 +69,15 @@ export const CartProvider = ({ children }) => {
     let itemAdded = false;
     
     setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.id === product.id);
+      // Find existing item with same id, size, and color
+      const productKey = getCartItemKey(product);
+      const existingItem = prevItems.find(item => getCartItemKey(item) === productKey);
 
       if (existingItem) {
-        // Update quantity if item already exists
+        // Update quantity if item with same id, size, and color already exists
         itemAdded = true;
         return prevItems.map(item =>
-          item.id === product.id
+          getCartItemKey(item) === productKey
             ? { 
                 ...item, 
                 quantity: Math.min(item.quantity + quantity, MAX_CART_QUANTITY) 
@@ -78,12 +85,13 @@ export const CartProvider = ({ children }) => {
             : item
         );
       } else {
-        // Add new item to cart
+        // Add new item to cart as separate entry
         itemAdded = true;
         return [...prevItems, { 
           ...product, 
           quantity: Math.min(quantity, MAX_CART_QUANTITY),
-          addedAt: new Date().toISOString()
+          addedAt: new Date().toISOString(),
+          cartItemKey: productKey // Store the key for easier lookup
         }];
       }
     });
@@ -94,43 +102,43 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Remove item from cart
-  const removeFromCart = (productId) => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
+  // Remove item from cart (by composite key)
+  const removeFromCart = (cartItemKey) => {
+    setCartItems(prevItems => prevItems.filter(item => getCartItemKey(item) !== cartItemKey));
   };
 
-  // Update item quantity
-  const updateQuantity = (productId, quantity) => {
+  // Update item quantity (by composite key)
+  const updateQuantity = (cartItemKey, quantity) => {
     if (quantity <= 0) {
-      removeFromCart(productId);
+      removeFromCart(cartItemKey);
       return;
     }
 
     setCartItems(prevItems =>
       prevItems.map(item =>
-        item.id === productId
+        getCartItemKey(item) === cartItemKey
           ? { ...item, quantity: Math.min(quantity, MAX_CART_QUANTITY) }
           : item
       )
     );
   };
 
-  // Increment quantity
-  const incrementQuantity = (productId) => {
+  // Increment quantity (by composite key)
+  const incrementQuantity = (cartItemKey) => {
     setCartItems(prevItems =>
       prevItems.map(item =>
-        item.id === productId && item.quantity < MAX_CART_QUANTITY
+        getCartItemKey(item) === cartItemKey && item.quantity < MAX_CART_QUANTITY
           ? { ...item, quantity: item.quantity + 1 }
           : item
       )
     );
   };
 
-  // Decrement quantity
-  const decrementQuantity = (productId) => {
+  // Decrement quantity (by composite key)
+  const decrementQuantity = (cartItemKey) => {
     setCartItems(prevItems =>
       prevItems.map(item =>
-        item.id === productId && item.quantity > 1
+        getCartItemKey(item) === cartItemKey && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
@@ -142,15 +150,22 @@ export const CartProvider = ({ children }) => {
     setCartItems([]);
   };
 
-  // Check if item is in cart
+  // Check if item is in cart (checks if ANY variant of product is in cart)
   const isInCart = (productId) => {
     return cartItems.some(item => item.id === productId);
   };
 
-  // Get item quantity
+  // Get total quantity for a product ID (sum of all variants)
   const getItemQuantity = (productId) => {
-    const item = cartItems.find(item => item.id === productId);
-    return item ? item.quantity : 0;
+    return cartItems
+      .filter(item => item.id === productId)
+      .reduce((total, item) => total + item.quantity, 0);
+  };
+
+  // Check if specific variant is in cart
+  const isVariantInCart = (productId, size, color) => {
+    const key = getCartItemKey({ id: productId, selectedSize: size, selectedColor: color });
+    return cartItems.some(item => getCartItemKey(item) === key);
   };
 
   // Toggle cart sidebar
@@ -213,6 +228,8 @@ export const CartProvider = ({ children }) => {
     clearCart,
     isInCart,
     getItemQuantity,
+    isVariantInCart,
+    getCartItemKey,
     toggleCart,
     openCart,
     closeCart,

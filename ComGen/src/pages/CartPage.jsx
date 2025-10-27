@@ -10,7 +10,8 @@ const CartPage = () => {
         removeFromCart, 
         updateQuantity, 
         cartTotal, 
-        clearCart 
+        clearCart,
+        getCartItemKey
     } = useCart();
 
     if (cartItems.length === 0) {
@@ -50,8 +51,10 @@ const CartPage = () => {
                         </div>
 
                         <div className="cart-items-list">
-                            {cartItems.map((item) => (
-                                <div key={item.id} className="cart-item-row">
+                            {cartItems.map((item) => {
+                                const itemKey = getCartItemKey(item);
+                                return (
+                                <div key={itemKey} className="cart-item-row">
                                     <div className="cart-item-product">
                                         <div className="cart-item-image">
                                             <img src={item.image} alt={item.name} />
@@ -71,7 +74,7 @@ const CartPage = () => {
                                     <div className="cart-item-quantity">
                                         <button 
                                             className="quantity-btn"
-                                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                            onClick={() => updateQuantity(itemKey, item.quantity - 1)}
                                             disabled={item.quantity <= 1}
                                         >
                                             <Minus size={18} strokeWidth={2.5} />
@@ -79,7 +82,7 @@ const CartPage = () => {
                                         <span className="quantity-display">{item.quantity}</span>
                                         <button 
                                             className="quantity-btn"
-                                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                            onClick={() => updateQuantity(itemKey, item.quantity + 1)}
                                         >
                                             <Plus size={18} strokeWidth={2.5} />
                                         </button>
@@ -92,14 +95,15 @@ const CartPage = () => {
                                     <div className="cart-item-actions">
                                         <button 
                                             className="remove-btn"
-                                            onClick={() => removeFromCart(item.id)}
+                                            onClick={() => removeFromCart(itemKey)}
                                             aria-label="Remove item"
                                         >
                                             <Trash2 size={20} strokeWidth={2} />
                                         </button>
                                     </div>
                                 </div>
-                            ))}
+                            );
+                            })}
                         </div>
 
                         <div className="cart-actions">

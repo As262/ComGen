@@ -8,7 +8,7 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: 
         url('/ChatGPT Image Aug 31, 2025, 07_53_40 PM.png'),
-        radial-gradient(ellipse at top left, rgba(64, 224, 191, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at top left, rgba(116, 84, 62, 0.15) 0%, transparent 50%),
         radial-gradient(ellipse at top right, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
         radial-gradient(ellipse at bottom left, rgba(168, 85, 247, 0.12) 0%, transparent 50%),
         radial-gradient(ellipse at bottom right, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
@@ -16,8 +16,10 @@
     background-size: cover, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
     background-position: center, top left, top right, bottom left, bottom right, center;
     background-repeat: no-repeat;
-    min-height: 101vh;
     padding-top: 4rem;
+    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .container-wrapper {
@@ -28,7 +30,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: calc(100vh - 6rem);
 }
 
 .login-container, .signup-container {
@@ -190,10 +191,10 @@ input {
 
 input:focus {
     outline: none;
-    border-color: rgba(64, 224, 191, 0.5);
+    border-color: rgba(116, 84, 62, 0.5);
     box-shadow: 
-        0 0 0 3px rgba(64, 224, 191, 0.2),
-        0 4px 15px rgba(64, 224, 191, 0.1),
+        0 0 0 3px rgba(116, 84, 62, 0.2),
+        0 4px 15px rgba(116, 84, 62, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.7);
     background: rgba(255, 255, 255, 0.6);
     transform: translateY(-1px);
@@ -204,7 +205,7 @@ input::placeholder {
 }
 
 .arrow-btn {
-    background: linear-gradient(135deg, #40e0bf 0%, #2dd4aa 100%);
+    background: #74543E;
     border: none;
     border-radius: 50%;
     width: 44px;
@@ -218,14 +219,14 @@ input::placeholder {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 
-        0 4px 15px rgba(64, 224, 191, 0.3),
+        0 4px 15px rgba(116, 84, 62, 0.3),
         inset 0 1px 0 rgba(255,255,255,0.2);
 }
 
 .arrow-btn:hover {
     transform: scale(1.05) translateY(-1px);
     box-shadow: 
-        0 6px 20px rgba(64, 224, 191, 0.4),
+        0 6px 20px rgba(116, 84, 62, 0.4),
         inset 0 1px 0 rgba(255,255,255,0.3);
 }
 
@@ -297,7 +298,7 @@ input::placeholder {
 }
 
 .signup-link {
-    color: #40e0bf;
+    color: #74543E;
     cursor: pointer;
     text-decoration: none;
     font-weight: 600;
@@ -305,7 +306,7 @@ input::placeholder {
 
 .signup-link:hover {
     text-decoration: underline;
-    color: #2dd4aa;
+    color: #5a3f2e;
 }
 
 .hidden {
