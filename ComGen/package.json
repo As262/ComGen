@@ -8,10 +8,11 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "next start"
+    "start": "node server.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "express": "^4.21.2",
     "lucide-react": "^0.548.0",
     "prop-types": "^15.8.1",
     "react": "^19.1.1",
