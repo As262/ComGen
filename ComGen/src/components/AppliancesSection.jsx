@@ -98,18 +98,10 @@ const AppliancesSection = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="appliances-cta">
-          <h3>Need Help Choosing?</h3>
-          <p>
-            Our experts are here to help you find the perfect appliances for your lifestyle. 
-            Get personalized recommendations and exclusive offers.
-          </p>
-          <div className="flex justify-center gap-4" style={{ flexWrap: 'wrap' }}>
-            <button className="btn btn-primary px-8 py-3">Talk to Expert</button>
-            <button className="btn btn-outline px-8 py-3">Download Catalog</button>
-          </div>
-        </div>
+        <br>
+        </br>
+        <br>
+        </br>
       </div>
     </section>
   );
