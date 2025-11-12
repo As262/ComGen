@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: comgen
+    env: node
+    buildCommand: npm ci && npm run build
+    startCommand: node server.js
+    plan: free
+    envVars:
+      - key: NODE_VERSION
+        value: 20.19.0
+      - key: NODE_ENV
+        value: production
