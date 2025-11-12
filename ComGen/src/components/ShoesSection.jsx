@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, Star } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import './ShoesSection.css';
 
 const ShoesSection = () => {
@@ -87,30 +87,30 @@ const ShoesSection = () => {
             >
               <div className="product-image shoes-product-image">
                 <img src={product.image} alt={product.name} />
-                <div className="product-overlay">
-                  <button className="btn btn-primary">
-                    <ShoppingCart size={20} />
-                    Quick Shop
-                  </button>
-                </div>
               </div>
               
               <div className="product-info">
-                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', marginRight: '0.5rem' }}>
-                    <Star style={{ width: '1rem', height: '1rem', color: 'var(--rose-gold)', fill: '#d4a574' }} />
-                    <span style={{ fontSize: '0.875rem', fontWeight: '500' }}>{product.rating}</span>
-                  </div>
-                  <span style={{ fontSize: '0.875rem', color: 'var(--muted-foreground)' }}>({product.reviews})</span>
-                </div>
-                
+                <div className="product-brand">Footwear</div>
                 <h3 className="product-name">{product.name}</h3>
-                
+                <p className="product-description">Premium quality with superior comfort</p>
+                <div className="product-rating">
+                  <div className="stars">{'★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating))}</div>
+                  <span className="rating-text">({product.rating}) {product.reviews} reviews</span>
+                </div>
                 <div className="product-price">
-                  <span className="price-current">${product.price}</span>
+                  <span className="current-price">${product.price}</span>
                   {product.originalPrice && (
-                    <span className="price-original">${product.originalPrice}</span>
+                    <>
+                      <span className="original-price">${product.originalPrice}</span>
+                      <span className="discount-badge">{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF</span>
+                    </>
                   )}
+                </div>
+                <div className="product-actions">
+                  <button className="btn btn-accent">
+                    <ShoppingCart size={20} />
+                    Add to Cart
+                  </button>
                 </div>
               </div>
             </div>
@@ -118,7 +118,9 @@ const ShoesSection = () => {
         </div>
 
         <div className="text-center mt-3">
+          <a href="shoes">
           <button className="btn btn-accent px-8 py-3 text-lg">View All Footwear</button>
+          </a>
         </div>
       </div>
     </section>

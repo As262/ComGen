@@ -93,14 +93,118 @@ const Navbar = () => {
         }, 300);
     };
 
-    const handleProductClick = (productId) => {
-        navigate(`/product/${productId}`);
+    const handleProductClick = (product) => {
+        // Determine which page to redirect based on product category
+        const category = product.category?.toLowerCase() || '';
+        const subcategory = product.subcategory?.toLowerCase() || '';
+        let redirectPath = '/';
+        
+        // Map category to appropriate route
+        // Check for Women's products first (more specific keywords)
+        if (category.includes('women') || subcategory.includes('women') ||
+            ['dress', 'dresses', 'skirt', 'skirts', 'blouse', 'blouses', 'suit', 'suits', 
+             'saree', 'sarees', 'top', 'tops', 'bottom', 'bottoms', 'legging', 'leggings'].some(cat => 
+                category.includes(cat) || subcategory.includes(cat))) {
+            redirectPath = '/women';
+        } 
+        // Check for Men's products
+        else if (category.includes('men') || subcategory.includes('men') ||
+            ['shirt', 'shirts', 'pant', 'pants', 'jacket', 'jackets', 'jean', 'jeans', 
+             'blazer', 'blazers', 'trouser', 'trousers'].some(cat => 
+                category.includes(cat) || subcategory.includes(cat))) {
+            redirectPath = '/men';
+        } 
+        // Check for Shoes
+        else if (category.includes('shoe') || category.includes('footwear') || 
+                 subcategory.includes('shoe') || subcategory.includes('footwear') ||
+            ['sneaker', 'sneakers', 'boot', 'boots', 'sandal', 'sandals', 
+             'loafer', 'loafers', 'heel', 'heels'].some(cat => 
+                category.includes(cat) || subcategory.includes(cat))) {
+            redirectPath = '/shoes';
+        } 
+        // Check for Appliances
+        else if (category.includes('appliance') || category.includes('kitchen') ||
+                 subcategory.includes('appliance') || subcategory.includes('kitchen') ||
+            ['coffee', 'blender', 'microwave', 'refrigerator', 'mixer', 'toaster'].some(cat => 
+                category.includes(cat) || subcategory.includes(cat))) {
+            redirectPath = '/appliances';
+        }
+        
+        navigate(redirectPath);
         handleSearchClear();
+        setMobileMenuActive(false); // Close mobile menu if open
+    };
+
+    // Determine which page to redirect based on search term and results
+    const getPageRedirectFromSearch = () => {
+        if (!searchTerm.trim() || searchResults.length === 0) return null;
+        
+        const lowercaseQuery = searchTerm.toLowerCase().trim();
+        
+        // Check if search term directly matches a category
+        if (lowercaseQuery.includes('men') || lowercaseQuery.includes('shirt') || 
+            lowercaseQuery.includes('pant') || lowercaseQuery.includes('jacket') ||
+            lowercaseQuery.includes('jeans') || lowercaseQuery.includes('blazer')) {
+            return '/men';
+        }
+        
+        if (lowercaseQuery.includes('women') || lowercaseQuery.includes('dress') || 
+            lowercaseQuery.includes('skirt') || lowercaseQuery.includes('blouse') ||
+            lowercaseQuery.includes('suit') || lowercaseQuery.includes('saree')) {
+            return '/women';
+        }
+        
+        if (lowercaseQuery.includes('shoe') || lowercaseQuery.includes('sneaker') || 
+            lowercaseQuery.includes('boot') || lowercaseQuery.includes('sandal') ||
+            lowercaseQuery.includes('loafer') || lowercaseQuery.includes('heel')) {
+            return '/shoes';
+        }
+        
+        if (lowercaseQuery.includes('appliance') || lowercaseQuery.includes('kitchen') || 
+            lowercaseQuery.includes('coffee') || lowercaseQuery.includes('blender') ||
+            lowercaseQuery.includes('microwave') || lowercaseQuery.includes('refrigerator') ||
+            lowercaseQuery.includes('mixer')) {
+            return '/appliances';
+        }
+        
+        // Check the category of the first search result
+        if (searchResults.length > 0) {
+            const firstProduct = searchResults[0];
+            const category = firstProduct.category?.toLowerCase() || '';
+            
+            // Map category to route
+            if (category.includes('men') || 
+                ['shirts', 'pants', 'jackets', 'jeans', 'blazers'].some(cat => category.includes(cat))) {
+                return '/men';
+            }
+            
+            if (category.includes('women') || 
+                ['dresses', 'skirts', 'blouses', 'suits', 'sarees'].some(cat => category.includes(cat))) {
+                return '/women';
+            }
+            
+            if (category.includes('shoe') || category.includes('footwear') ||
+                ['sneakers', 'boots', 'sandals', 'loafers', 'heels'].some(cat => category.includes(cat))) {
+                return '/shoes';
+            }
+            
+            if (category.includes('appliance') || category.includes('kitchen') ||
+                ['coffee', 'blender', 'microwave', 'refrigerator'].some(cat => category.includes(cat))) {
+                return '/appliances';
+            }
+        }
+        
+        return null;
     };
 
     const handleViewAllResults = () => {
         if (searchTerm.trim()) {
-            navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+            const redirectPage = getPageRedirectFromSearch();
+            if (redirectPage) {
+                navigate(redirectPage);
+            } else {
+                navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+            }
             handleSearchClear();
         }
     };
@@ -108,8 +212,14 @@ const Navbar = () => {
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         if (searchTerm.trim()) {
-            navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+            const redirectPage = getPageRedirectFromSearch();
+            if (redirectPage) {
+                navigate(redirectPage);
+            } else {
+                navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+            }
             handleSearchClear();
+            setMobileMenuActive(false); // Close mobile menu after search
         }
     };
 
@@ -200,7 +310,7 @@ const Navbar = () => {
                                             <div 
                                                 key={product.id}
                                                 className="search-result-item"
-                                                onClick={() => handleProductClick(product.id)}
+                                                onClick={() => handleProductClick(product)}
                                             >
                                                 <img 
                                                     src={product.images?.main || product.image} 
@@ -268,13 +378,13 @@ const Navbar = () => {
                             )}
                         </div>
                     ) : (
-                        <Link to="/login" className="btn btn-ghost">
+                        <Link to="/login" className="btn btn-ghost" aria-label="Login">
                             <User size={20} />
-                            Login
+                            <span className="btn-text">Login</span>
                         </Link>
                     )}
 
-                    <Link to="/cart" className="btn btn-ghost cart-btn" style={{ position: 'relative' }}>
+                    <Link to="/cart" className="btn btn-ghost cart-btn" style={{ position: 'relative' }} aria-label="Shopping Cart">
                         <ShoppingBag size={20} />
                         {cartItemCount > 0 && (
                             <span className="cart-count">{cartItemCount}</span>

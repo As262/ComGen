@@ -254,5 +254,39 @@ export const shoesProducts = [
         tags: ["sale", "comfort", "work"],
         featured: false,
         createdAt: "2024-09-30"
+    },
+    {
+        id: "shoes-sneakers-006",
+        name: "Classic Canvas Sneakers",
+        description: "Timeless canvas sneakers with rubber toe cap and classic silhouette. A wardrobe staple that goes with everything.",
+        price: 79.99,
+        originalPrice: 99.99,
+        discount: 20,
+        category: "shoes",
+        subcategory: "sneakers",
+        images: {
+            main: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=320&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=712&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=712&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?q=80&w=712&auto=format&fit=crop"
+            ]
+        },
+        stock: 145,
+        rating: 4.5,
+        reviews: 428,
+        specifications: {
+            brand: "Classic Canvas",
+            material: "Canvas",
+            sole: "Rubber",
+            care: "Machine Washable"
+        },
+        sizes: ["6", "7", "8", "9", "10", "11", "12"],
+        colors: ["White", "Black", "Navy", "Red", "Grey"],
+        tags: ["new", "casual", "bestseller"],
+        featured: true,
+        createdAt: "2024-11-10"
     }
+    
+    
 ];

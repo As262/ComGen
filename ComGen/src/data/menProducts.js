@@ -3,7 +3,7 @@ export const menProducts = [
         id: 1,
         name: "Premium Cotton Dress Shirt",
         brand: "ComGen",
-        category: "shirts",
+        category: "Jackets",
         price: 89.99,
         originalPrice: 119.99,
         image: "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?q=80&w=669&auto=format&fit=crop",

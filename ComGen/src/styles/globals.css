@@ -3,6 +3,9 @@
    Professional E-Commerce Application
    ======================================== */
 
+/* Import Global Product Card Styles */
+@import './product-card.css';
+
 /* CSS Variables - Design System */
 :root {
   /* Primary Colors */

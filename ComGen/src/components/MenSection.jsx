@@ -9,10 +9,11 @@ const MenSection = () => {
   const products = [
     {
       id: 1,
-      name: 'Premium Denim Shirt',
-      price: 129,
-      originalPrice: 179,
-      category: 'Shirts',
+      name: 'Premium Cotton Dress Shirt',
+      price: 89.99,
+      originalPrice: 119.99,
+      category: 'Jackets',
+      description: 'Crafted from premium Egyptian cotton with a modern slim fit. Perfect for professional settings and formal occasions.',
       stock: 10,
       rating: 4.5,
       reviews: 45,
@@ -28,6 +29,7 @@ const MenSection = () => {
       name: 'Designer Coat',
       price: 399,
       category: 'Outerwear',
+      description: 'A premium designer coat crafted with sleek tailoring and luxurious fabric, perfect for elevating any look.',
       stock: 5,
       rating: 4.8,
       reviews: 23,
@@ -44,6 +46,7 @@ const MenSection = () => {
       price: 89,
       originalPrice: 119,
       category: 'Polo Shirts',
+      description: 'A premium luxury polo T-shirt designed with refined craftsmanship and ultra-soft fabric for a timeless, sophisticated look.',
       stock: 15,
       rating: 4.6,
       reviews: 67,
@@ -84,9 +87,27 @@ const MenSection = () => {
             >
               <div className="product-image">
                 <img src={product.image} alt={product.name} />
-                <div className="product-overlay">
+              </div>
+              <div className="product-info">
+                <div className="product-brand">{product.category}</div>
+                <h3 className="product-name">{product.name}</h3>
+                <p className="product-description">{product.description}</p>
+                <div className="product-rating">
+                  <div className="stars">{'★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating))}</div>
+                  <span className="rating-text">({product.rating}) {product.reviews} reviews</span>
+                </div>
+                <div className="product-price">
+                  <span className="current-price">${product.price}</span>
+                  {product.originalPrice && (
+                    <>
+                      <span className="original-price">${product.originalPrice}</span>
+                      <span className="discount-badge">{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF</span>
+                    </>
+                  )}
+                </div>
+                <div className="product-actions">
                   <button 
-                    className="btn btn-primary"
+                    className="btn btn-accent"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleAddToCart(product);
@@ -97,22 +118,12 @@ const MenSection = () => {
                   </button>
                 </div>
               </div>
-              <div className="product-info">
-                <h3 className="product-name">{product.name}</h3>
-                <div className="product-price">
-                  <span className="price-current">${product.price}</span>
-                  {product.originalPrice && (
-                    <span className="price-original">${product.originalPrice}</span>
-                  )}
-                </div>
-                <p className="product-category">{product.category}</p>
-              </div>
             </div>
           ))}
         </div>
         
         <div className="text-center mt-3">
-          <a href="#men">
+          <a href="men">
             <button className="btn btn-accent px-8 py-3 text-lg">View All Men's Fashion</button>
           </a>
         </div>

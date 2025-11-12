@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Eye, ShoppingCart, Heart, Grid3x3, List, Plus, SlidersHorizontal, X, Minus, Trash2 } from 'lucide-react';
+import { Eye, ShoppingCart, Grid3x3, List, Plus, SlidersHorizontal, X, Minus, Trash2 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { appliancesProducts } from '../data/appliancesProducts';
 import './AppliancesPage.css';
@@ -9,7 +9,6 @@ const AppliancesPage = () => {
     const [filteredProducts, setFilteredProducts] = useState([...appliancesProducts]);
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 12;
-    const [wishlist, setWishlist] = useState(JSON.parse(localStorage.getItem('appliancesWishlist')) || []);
     const [currentView, setCurrentView] = useState('grid');
     const [filtersActive, setFiltersActive] = useState(false);
     const [quickViewProduct, setQuickViewProduct] = useState(null);
@@ -20,10 +19,6 @@ const AppliancesPage = () => {
         brand: 'all',
         sort: 'featured'
     });
-
-    useEffect(() => {
-        localStorage.setItem('appliancesWishlist', JSON.stringify(wishlist));
-    }, [wishlist]);
 
     const filterProducts = () => {
         let filtered = [...appliancesProducts];
@@ -87,16 +82,6 @@ const AppliancesPage = () => {
 
     const toggleFilters = () => {
         setFiltersActive(!filtersActive);
-    };
-
-    const toggleWishlist = (productId) => {
-        setWishlist(prev => {
-            if (prev.includes(productId)) {
-                return prev.filter(id => id !== productId);
-            } else {
-                return [...prev, productId];
-            }
-        });
     };
 
     const openQuickView = (product) => {
@@ -300,13 +285,6 @@ const AppliancesPage = () => {
                                             <Eye size={18} />
                                             Quick View
                                         </button>
-                                        <button 
-                                            className="btn btn-outline"
-                                            onClick={() => handleAddToCart(product, product.colors[0])}
-                                        >
-                                            <ShoppingCart size={18} />
-                                            Add to Cart
-                                        </button>
                                     </div>
                                 </div>
                                 <div className="product-info">
@@ -356,12 +334,6 @@ const AppliancesPage = () => {
                                         >
                                             <ShoppingCart size={18} />
                                             Add to Cart
-                                        </button>
-                                        <button 
-                                            className={`btn btn-outline ${wishlist.includes(product.id) ? 'active' : ''}`}
-                                            onClick={() => toggleWishlist(product.id)}
-                                        >
-                                            <Heart size={18} fill={wishlist.includes(product.id) ? 'currentColor' : 'none'} />
                                         </button>
                                     </div>
                                 </div>
@@ -457,33 +429,12 @@ const AppliancesPage = () => {
                                         <ShoppingCart size={18} />
                                         Add to Cart
                                     </button>
-                                    <button 
-                                        className={`btn btn-outline ${wishlist.includes(quickViewProduct.id) ? 'active' : ''}`}
-                                        onClick={() => toggleWishlist(quickViewProduct.id)}
-                                    >
-                                        <Heart size={18} fill={wishlist.includes(quickViewProduct.id) ? 'currentColor' : 'none'} />
-                                        {wishlist.includes(quickViewProduct.id) ? 'Remove from Wishlist' : 'Add to Wishlist'}
-                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             )}
-
-            {/* Newsletter Section */}
-            <section className="newsletter-section">
-                <div className="newsletter-container">
-                    <div className="newsletter-content">
-                        <h2>Upgrade Your Home</h2>
-                        <p>Get exclusive deals on premium appliances, early access to new arrivals, and expert home improvement tips.</p>
-                        <form className="newsletter-form">
-                            <input type="email" placeholder="Enter your email address" />
-                            <button type="submit" className="btn btn-outline">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-            </section>
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Eye, ShoppingCart, Heart, Grid3x3, List, Plus, SlidersHorizontal, X, Minus, Trash2 } from 'lucide-react';
+import { Eye, ShoppingCart, Grid3x3, List, Plus, SlidersHorizontal, X, Minus, Trash2 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { shoesProducts } from '../data/shoesProducts';
 import './ShoesPage.css';
@@ -9,7 +9,6 @@ const ShoesPage = () => {
     const [filteredProducts, setFilteredProducts] = useState([...shoesProducts]);
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 12;
-    const [wishlist, setWishlist] = useState(JSON.parse(localStorage.getItem('shoesWishlist')) || []);
     const [currentView, setCurrentView] = useState('grid');
     const [filtersActive, setFiltersActive] = useState(false);
     const [quickViewProduct, setQuickViewProduct] = useState(null);
@@ -21,10 +20,6 @@ const ShoesPage = () => {
         brand: 'all',
         sort: 'featured'
     });
-
-    useEffect(() => {
-        localStorage.setItem('shoesWishlist', JSON.stringify(wishlist));
-    }, [wishlist]);
 
     const filterProducts = () => {
         let filtered = [...shoesProducts];
@@ -88,16 +83,6 @@ const ShoesPage = () => {
 
     const toggleFilters = () => {
         setFiltersActive(!filtersActive);
-    };
-
-    const toggleWishlist = (productId) => {
-        setWishlist(prev => {
-            if (prev.includes(productId)) {
-                return prev.filter(id => id !== productId);
-            } else {
-                return [...prev, productId];
-            }
-        });
     };
 
     const openQuickView = (product) => {
@@ -299,13 +284,6 @@ const ShoesPage = () => {
                                             <Eye size={18} />
                                             Quick View
                                         </button>
-                                        <button 
-                                            className="btn btn-outline"
-                                            onClick={() => handleAddToCart(product, product.sizes[0], product.colors[0])}
-                                        >
-                                            <ShoppingCart size={18} />
-                                            Add to Cart
-                                        </button>
                                     </div>
                                 </div>
                                 <div className="product-info">
@@ -332,12 +310,6 @@ const ShoesPage = () => {
                                         >
                                             <ShoppingCart size={18} />
                                             Add to Cart
-                                        </button>
-                                        <button 
-                                            className={`btn btn-outline ${wishlist.includes(product.id) ? 'active' : ''}`}
-                                            onClick={() => toggleWishlist(product.id)}
-                                        >
-                                            <Heart size={18} fill={wishlist.includes(product.id) ? 'currentColor' : 'none'} />
                                         </button>
                                     </div>
                                 </div>
@@ -433,33 +405,12 @@ const ShoesPage = () => {
                                         <ShoppingCart size={18} />
                                         Add to Cart
                                     </button>
-                                    <button 
-                                        className={`btn btn-outline ${wishlist.includes(quickViewProduct.id) ? 'active' : ''}`}
-                                        onClick={() => toggleWishlist(quickViewProduct.id)}
-                                    >
-                                        <Heart size={18} fill={wishlist.includes(quickViewProduct.id) ? 'currentColor' : 'none'} />
-                                        {wishlist.includes(quickViewProduct.id) ? 'Remove from Wishlist' : 'Add to Wishlist'}
-                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             )}
-
-            {/* Newsletter Section */}
-            <section className="newsletter-section">
-                <div className="newsletter-container">
-                    <div className="newsletter-content">
-                        <h2>Stay in Step with Style</h2>
-                        <p>Get exclusive access to new shoe arrivals, special offers, and style inspiration delivered to your inbox.</p>
-                        <form className="newsletter-form">
-                            <input type="email" placeholder="Enter your email address" />
-                            <button type="submit" className="btn btn-outline">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-            </section>
         </div>
     );
 };

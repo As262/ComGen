@@ -84,9 +84,27 @@ const WomenSection = () => {
             >
               <div className="product-image">
                 <img src={product.image} alt={product.name} />
-                <div className="product-overlay">
+              </div>
+              <div className="product-info">
+                <div className="product-brand">{product.category}</div>
+                <h3 className="product-name">{product.name}</h3>
+                <p className="product-description">Elegant design with premium fabric</p>
+                <div className="product-rating">
+                  <div className="stars">{'★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating))}</div>
+                  <span className="rating-text">({product.rating}) {product.reviews} reviews</span>
+                </div>
+                <div className="product-price">
+                  <span className="current-price">${product.price}</span>
+                  {product.originalPrice && (
+                    <>
+                      <span className="original-price">${product.originalPrice}</span>
+                      <span className="discount-badge">{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF</span>
+                    </>
+                  )}
+                </div>
+                <div className="product-actions">
                   <button 
-                    className="btn btn-primary"
+                    className="btn btn-accent"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleAddToCart(product);
@@ -97,22 +115,12 @@ const WomenSection = () => {
                   </button>
                 </div>
               </div>
-              <div className="product-info">
-                <h3 className="product-name">{product.name}</h3>
-                <div className="product-price">
-                  <span className="price-current">${product.price}</span>
-                  {product.originalPrice && (
-                    <span className="price-original">${product.originalPrice}</span>
-                  )}
-                </div>
-                <p className="product-category">{product.category}</p>
-              </div>
             </div>
           ))}
         </div>
         
         <div className="text-center mt-3">
-          <a href="#women">
+          <a href="women">
             <button className="btn btn-accent px-8 py-3 text-lg">View All Women's Fashion</button>
           </a>
         </div>

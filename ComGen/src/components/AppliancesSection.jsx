@@ -63,7 +63,9 @@ const AppliancesSection = () => {
             <div className="appliances-content">
               <h2>Premium Appliances</h2>
               <p>Transform your kitchen with intelligent design and cutting-edge technology</p>
+              <a href="appliances">
               <button className="btn btn-accent px-8 py-3 text-lg">Explore Collection</button>
+              </a>
             </div>
           </div>
         </div>
