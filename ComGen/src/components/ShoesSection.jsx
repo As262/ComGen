@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 import './ShoesSection.css';
 
 const ShoesSection = () => {
+  const { addToCart, isInCart } = useCart();
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const slides = [
@@ -25,29 +27,46 @@ const ShoesSection = () => {
       id: 1,
       name: 'Premium Athletic Sneaker',
       price: 189,
+      description:'A premium athletic sneaker engineered for peak performance with unmatched comfort and modern style.',
       originalPrice: 249,
       rating: 4.8,
       reviews: 127,
+      sizes: ['7', '8', '9', '10', '11'],
+      colors: ['Black', 'White', 'Gray'],
       image: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=320&fit=crop'
     },
     {
       id: 2,
       name: 'Classic Leather Loafer',
       price: 299,
+      description:'A timeless classic leather loafer crafted with premium materials for effortless sophistication.',
       rating: 4.9,
       reviews: 89,
+      sizes: ['7', '8', '9', '10', '11'],
+      colors: ['Brown', 'Black', 'Tan'],
       image: 'https://images.unsplash.com/photo-1533867617858-e7b97e060509?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     },
     {
       id: 3,
       name: 'Designer Shoe-Top',
       price: 349,
+      description:'A premium designer shoe-top crafted with modern detailing and a refined, stylish finish.',
       originalPrice: 399,
       rating: 4.7,
       reviews: 156,
+      sizes: ['7', '8', '9', '10', '11'],
+      colors: ['White', 'Red', 'Multi'],
       image: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=400&h=320&fit=crop'
     }
   ];
+
+  const handleAddToCart = (product) => {
+    addToCart({
+      ...product,
+      selectedSize: product.sizes?.[0] || '9',
+      selectedColor: product.colors?.[0] || 'Default'
+    });
+  };
 
   return (
     <section id="shoes" className="shoes-section">
@@ -92,7 +111,7 @@ const ShoesSection = () => {
               <div className="product-info">
                 <div className="product-brand">Footwear</div>
                 <h3 className="product-name">{product.name}</h3>
-                <p className="product-description">Premium quality with superior comfort</p>
+                <p className="product-description">{product.description}</p>
                 <div className="product-rating">
                   <div className="stars">{'★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating))}</div>
                   <span className="rating-text">({product.rating}) {product.reviews} reviews</span>
@@ -107,9 +126,15 @@ const ShoesSection = () => {
                   )}
                 </div>
                 <div className="product-actions">
-                  <button className="btn btn-accent">
+                  <button 
+                    className="btn btn-accent"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToCart(product);
+                    }}
+                  >
                     <ShoppingCart size={20} />
-                    Add to Cart
+                    {isInCart(product.id) ? 'Added to Cart' : 'Add to Cart'}
                   </button>
                 </div>
               </div>

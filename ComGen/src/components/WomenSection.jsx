@@ -13,6 +13,7 @@ const WomenSection = () => {
       price: 299,
       originalPrice: 399,
       category: 'Formals',
+      description:'An elegant baby pink blazer tailored to perfection, radiating charm and sophistication.',
       stock: 8,
       rating: 4.7,
       reviews: 34,
@@ -28,6 +29,7 @@ const WomenSection = () => {
       name: 'Designer Dress',
       price: 599,
       category: 'Dresses',
+      description:'A stunning designer dress crafted with exquisite detail for an effortlessly elevated look.',
       stock: 12,
       rating: 4.9,
       reviews: 56,
@@ -44,6 +46,7 @@ const WomenSection = () => {
       price: 149,
       originalPrice: 199,
       category: 'Suit',
+      description:'A sleek silk suit designed to elevate your style with its rich texture and graceful drape.',
       stock: 20,
       rating: 4.4,
       reviews: 28,
@@ -88,7 +91,7 @@ const WomenSection = () => {
               <div className="product-info">
                 <div className="product-brand">{product.category}</div>
                 <h3 className="product-name">{product.name}</h3>
-                <p className="product-description">Elegant design with premium fabric</p>
+                <p className="product-description">{product.description}</p>
                 <div className="product-rating">
                   <div className="stars">{'★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating))}</div>
                   <span className="rating-text">({product.rating}) {product.reviews} reviews</span>

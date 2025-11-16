@@ -93,7 +93,9 @@ const AppliancesSection = () => {
                   <li key={index}>{feature}</li>
                 ))}
               </ul>
-              <button className="btn btn-outline" style={{ width: '100%' }}>View Products</button>
+              <a href="/appliances">
+                <button className="btn btn-outline" style={{ width: '100%' }}>View Products</button>
+              </a>
             </div>
           ))}
         </div>

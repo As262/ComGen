@@ -1,12 +1,17 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import useToast from '../hooks/useToast';
+import ToastContainer from './ToastContainer';
 import './PaymentButton.css';
 
 const PaymentButton = ({ amount, orderId, onSuccess, onFailure, disabled = false }) => {
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
     const { clearCart } = useCart();
-    const { user } = useAuth();
+    const { user, isAuthenticated } = useAuth();
+    const { toasts, warning, hideToast } = useToast();
 
     // Load Razorpay script
     const loadRazorpayScript = () => {
@@ -29,7 +34,7 @@ const PaymentButton = ({ amount, orderId, onSuccess, onFailure, disabled = false
                 },
                 body: JSON.stringify({
                     amount: amount,
-                    currency: 'INR',
+                    currency: 'USD',
                     receipt: orderId || `order_${Date.now()}`,
                     notes: {
                         orderId: orderId || `order_${Date.now()}`,
@@ -77,6 +82,15 @@ const PaymentButton = ({ amount, orderId, onSuccess, onFailure, disabled = false
 
     // Handle payment
     const handlePayment = async () => {
+        // Check if user is logged in
+        if (!isAuthenticated || !user) {
+            warning('Please login to proceed with payment', 2000);
+            setTimeout(() => {
+                navigate('/login');
+            }, 2000);
+            return;
+        }
+
         try {
             setLoading(true);
 
@@ -185,22 +199,25 @@ const PaymentButton = ({ amount, orderId, onSuccess, onFailure, disabled = false
     };
 
     return (
-        <button
-            className="payment-button"
-            onClick={handlePayment}
-            disabled={disabled || loading || !amount || amount <= 0}
-        >
-            {loading ? (
-                <>
-                    <span className="spinner"></span>
-                    Processing...
-                </>
-            ) : (
-                <>
-                    Pay ₹{amount?.toFixed(2) || '0.00'}
-                </>
-            )}
-        </button>
+        <>
+            <ToastContainer toasts={toasts} onClose={hideToast} />
+            <button
+                className="payment-button"
+                onClick={handlePayment}
+                disabled={disabled || loading || !amount || amount <= 0}
+            >
+                {loading ? (
+                    <>
+                        <span className="spinner"></span>
+                        Processing...
+                    </>
+                ) : (
+                    <>
+                        Pay ${amount?.toFixed(2) || '0.00'}
+                    </>
+                )}
+            </button>
+        </>
     );
 };
 
