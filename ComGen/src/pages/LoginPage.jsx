@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { ArrowRight, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { getFromLocalStorage } from '../utils/helpers';
+import { STORAGE_KEYS } from '../utils/constants';
 import '../styles/LoginPage.css';
 
 const LoginPage = () => {
@@ -14,19 +16,35 @@ const LoginPage = () => {
   const [signupName, setSignupName] = useState('');
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [signupNameError, setSignupNameError] = useState('');
+  const [signupEmailError, setSignupEmailError] = useState('');
+  const [signupPasswordError, setSignupPasswordError] = useState('');
 
   const validateEmail = (email) => {
     return email.includes('@') && email.trim() !== '';
   };
 
   const showPasswordStep = () => {
+    setEmailError('');
+    
     if (!email) {
-      alert('Please enter your email');
+      setEmailError('Please enter your email');
       return;
     }
 
     if (!validateEmail(email)) {
-      alert('Please enter a valid email address with @');
+      setEmailError('Please enter a valid email address with @');
+      return;
+    }
+
+    // Check if user exists
+    const registeredUsers = getFromLocalStorage(STORAGE_KEYS.REGISTERED_USERS, []);
+    const existingUser = registeredUsers.find(u => u.email === email);
+    
+    if (!existingUser) {
+      setEmailError('Email not found. Please sign up first.');
       return;
     }
 
@@ -35,61 +53,80 @@ const LoginPage = () => {
 
   const showEmailStep = () => {
     setShowPassword(false);
+    setPasswordError('');
   };
 
   const login = () => {
+    setPasswordError('');
+    
     if (!password) {
-      alert('Please enter your password');
+      setPasswordError('Please enter your password');
       return;
     }
 
     const result = authLogin(email, password);
     
     if (result.success) {
-      alert(result.message);
       setTimeout(() => {
         navigate('/');
-      }, 1000);
+      }, 500);
     } else {
-      alert(result.message);
+      setPasswordError(result.message);
     }
   };
 
   const showSignupForm = () => {
     setShowSignup(true);
+    setEmailError('');
   };
 
   const showLoginForm = () => {
     setShowSignup(false);
+    setSignupNameError('');
+    setSignupEmailError('');
+    setSignupPasswordError('');
   };
 
   const signup = () => {
-    if (!signupName || !signupEmail || !signupPassword) {
-      alert('Please fill in all fields');
+    setSignupNameError('');
+    setSignupEmailError('');
+    setSignupPasswordError('');
+    
+    if (!signupName) {
+      setSignupNameError('Please enter your full name');
+      return;
+    }
+    
+    if (!signupEmail) {
+      setSignupEmailError('Please enter your email');
       return;
     }
 
     if (!validateEmail(signupEmail)) {
-      alert('Please enter a valid email address with @');
+      setSignupEmailError('Please enter a valid email address with @');
+      return;
+    }
+
+    if (!signupPassword) {
+      setSignupPasswordError('Please enter a password');
       return;
     }
 
     if (signupPassword.length < 6) {
-      alert('Password must be at least 6 characters long');
+      setSignupPasswordError('Password must be at least 6 characters long');
       return;
     }
 
     const result = authSignup(signupName, signupEmail, signupPassword);
     
     if (result.success) {
-      alert(result.message);
       // Clear signup form
       setSignupName('');
       setSignupEmail('');
       setSignupPassword('');
       showLoginForm();
     } else {
-      alert(result.message);
+      setSignupEmailError(result.message);
     }
   };
 
@@ -115,11 +152,13 @@ const LoginPage = () => {
                   placeholder="Enter Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && showPasswordStep()}
                 />
                 <button className="arrow-btn" onClick={showPasswordStep}>
                   <ArrowRight size={32} />
                 </button>
               </div>
+              {emailError && <p className="error-message">{emailError}</p>}
             </div>
 
             {/* Social login buttons removed per request */}
@@ -143,11 +182,13 @@ const LoginPage = () => {
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && login()}
                 />
                 <button className="arrow-btn" onClick={login}>
                   <ArrowRight size={32} />
                 </button>
               </div>
+              {passwordError && <p className="error-message">{passwordError}</p>}
             </div>
           </div>
 
@@ -176,6 +217,7 @@ const LoginPage = () => {
                 onChange={(e) => setSignupName(e.target.value)}
               />
             </div>
+            {signupNameError && <p className="error-message">{signupNameError}</p>}
           </div>
 
           <div className="form-group">
@@ -191,6 +233,7 @@ const LoginPage = () => {
                 pattern=".*@.*"
               />
             </div>
+            {signupEmailError && <p className="error-message">{signupEmailError}</p>}
           </div>
 
           <div className="form-group">
@@ -202,11 +245,13 @@ const LoginPage = () => {
                 placeholder="Create a password"
                 value={signupPassword}
                 onChange={(e) => setSignupPassword(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && signup()}
               />
               <button className="arrow-btn" onClick={signup}>
                 <ArrowRight size={32} />
               </button>
             </div>
+            {signupPasswordError && <p className="error-message">{signupPasswordError}</p>}
           </div>
 
           <div className="signup-text">

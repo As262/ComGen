@@ -16,17 +16,19 @@
     background-size: cover, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
     background-position: center, top left, top right, bottom left, bottom right, center;
     background-repeat: no-repeat;
-    padding-top: 4rem;
-    min-height: 100vh;
-    height: 100vh;
+    min-height: calc(100vh - 80px);
+    height: calc(100vh - 80px);
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 180px;
 }
 
 .container-wrapper {
     position: relative;
     width: 380px;
     height: 520px;
-    margin: 2rem auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -165,6 +167,27 @@ label {
     margin-bottom: 8px;
     display: block;
     font-weight: 500;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 0.875rem;
+    margin-top: 8px;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    z-index: 2;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .input-container {
