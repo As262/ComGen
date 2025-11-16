@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { formatCurrency } from '../utils/helpers';
+import PaymentButton from '../components/PaymentButton';
 import './CartPage.css';
 
 const CartPage = () => {
@@ -13,6 +14,19 @@ const CartPage = () => {
         clearCart,
         getCartItemKey
     } = useCart();
+
+    // Handle payment success
+    const handlePaymentSuccess = (paymentData) => {
+        console.log('Payment successful:', paymentData);
+        // You can navigate to success page or show success message
+        // navigate('/order-success', { state: { paymentData } });
+    };
+
+    // Handle payment failure
+    const handlePaymentFailure = (error) => {
+        console.error('Payment failed:', error);
+        // Show error message to user
+    };
 
     if (cartItems.length === 0) {
         return (
@@ -145,10 +159,13 @@ const CartPage = () => {
                                 <span className="total-amount">{formatCurrency(cartTotal)}</span>
                             </div>
 
-                            <button className="btn btn-primary btn-checkout">
-                                Proceed to Checkout
-                                <ArrowRight size={20} />
-                            </button>
+                            <PaymentButton 
+                                amount={cartTotal}
+                                orderId={`ORDER_${Date.now()}`}
+                                onSuccess={handlePaymentSuccess}
+                                onFailure={handlePaymentFailure}
+                                disabled={cartTotal <= 0}
+                            />
 
                             <div className="checkout-benefits">
                                 <div className="benefit-item">

@@ -1,0 +1,68 @@
+.payment-button {
+    background: linear-gradient(135deg, #744e3e 0%, #9b6b5c 100%);
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 200px;
+    box-shadow: 0 4px 6px rgba(116, 78, 62, 0.2);
+}
+
+.payment-button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #5a3d31 0%, #744e3e 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(116, 78, 62, 0.3);
+}
+
+.payment-button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(116, 78, 62, 0.2);
+}
+
+.payment-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.payment-button .spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .payment-button {
+        font-size: 1rem;
+        padding: 0.875rem 2rem;
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .payment-button {
+        font-size: 0.9375rem;
+        padding: 0.75rem 1.5rem;
+        width: 100%;
+        min-width: unset;
+    }
+}
