@@ -2,13 +2,11 @@ import { useState } from 'react';
 import { ArrowRight, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { getFromLocalStorage } from '../utils/helpers';
-import { STORAGE_KEYS } from '../utils/constants';
 import '../styles/LoginPage.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { login: authLogin, signup: authSignup } = useAuth();
+  const { login: authLogin, signup: authSignup, checkEmail } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const [email, setEmail] = useState('');
@@ -26,7 +24,7 @@ const LoginPage = () => {
     return email.includes('@') && email.trim() !== '';
   };
 
-  const showPasswordStep = () => {
+  const showPasswordStep = async () => {
     setEmailError('');
     
     if (!email) {
@@ -40,10 +38,9 @@ const LoginPage = () => {
     }
 
     // Check if user exists
-    const registeredUsers = getFromLocalStorage(STORAGE_KEYS.REGISTERED_USERS, []);
-    const existingUser = registeredUsers.find(u => u.email === email);
+    const exists = await checkEmail(email);
     
-    if (!existingUser) {
+    if (!exists) {
       setEmailError('Email not found. Please sign up first.');
       return;
     }
@@ -56,7 +53,7 @@ const LoginPage = () => {
     setPasswordError('');
   };
 
-  const login = () => {
+  const login = async () => {
     setPasswordError('');
     
     if (!password) {
@@ -64,7 +61,7 @@ const LoginPage = () => {
       return;
     }
 
-    const result = authLogin(email, password);
+    const result = await authLogin(email, password);
     
     if (result.success) {
       setTimeout(() => {
@@ -87,7 +84,7 @@ const LoginPage = () => {
     setSignupPasswordError('');
   };
 
-  const signup = () => {
+  const signup = async () => {
     setSignupNameError('');
     setSignupEmailError('');
     setSignupPasswordError('');
@@ -117,14 +114,13 @@ const LoginPage = () => {
       return;
     }
 
-    const result = authSignup(signupName, signupEmail, signupPassword);
+    const result = await authSignup(signupName, signupEmail, signupPassword);
     
     if (result.success) {
-      // Clear signup form
-      setSignupName('');
-      setSignupEmail('');
-      setSignupPassword('');
-      showLoginForm();
+      // Auto-login after signup
+      setTimeout(() => {
+        navigate('/');
+      }, 500);
     } else {
       setSignupEmailError(result.message);
     }

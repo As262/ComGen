@@ -64,13 +64,13 @@
 
 .signup-container {
     opacity: 0;
-    transform: translateY(50px) scale(0.95);
+    transform: translateY(-120px) scale(0.95);
     pointer-events: none;
 }
 
 .signup-container.show {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(-120px) scale(1);
     pointer-events: auto;
 }
 

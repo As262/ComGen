@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { getFromLocalStorage, saveToLocalStorage, removeFromLocalStorage } from '../utils/helpers';
-import { STORAGE_KEYS } from '../utils/constants';
+
+const API_URL = 'http://localhost:5000/api/auth';
 
 // Create Auth Context
 const AuthContext = createContext();
@@ -12,90 +12,119 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Load user session from localStorage on mount
+  // Verify token on mount
   useEffect(() => {
-    const savedUser = getFromLocalStorage(STORAGE_KEYS.USER_SESSION);
-    if (savedUser && savedUser.sessionExpiry > Date.now()) {
-      setUser(savedUser);
-      setIsAuthenticated(true);
-    } else {
-      // Clear expired session
-      removeFromLocalStorage(STORAGE_KEYS.USER_SESSION);
-    }
-    setLoading(false);
+    const verifyToken = async () => {
+      const token = localStorage.getItem('auth_token');
+      if (!token) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_URL}/verify`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        const data = await response.json();
+        
+        if (data.success) {
+          setUser(data.user);
+          setIsAuthenticated(true);
+        } else {
+          localStorage.removeItem('auth_token');
+        }
+      } catch (error) {
+        console.error('Token verification failed:', error);
+        localStorage.removeItem('auth_token');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    verifyToken();
   }, []);
 
-  // Save user session whenever it changes
-  useEffect(() => {
-    if (user) {
-      saveToLocalStorage(STORAGE_KEYS.USER_SESSION, user);
-    }
-  }, [user]);
-
   // Login function
-  const login = (email, password, name = null) => {
-    // In a real app, you would validate against a backend API
-    // For now, we'll use a simple validation
-    
-    // Get registered users from localStorage
-    const registeredUsers = getFromLocalStorage(STORAGE_KEYS.REGISTERED_USERS, []);
-    
-    // Check if user exists
-    const existingUser = registeredUsers.find(u => u.email === email);
-    
-    if (existingUser) {
-      // Validate password
-      if (existingUser.password === password) {
-        const userData = {
-          id: existingUser.id,
-          email: existingUser.email,
-          name: existingUser.name,
-          sessionExpiry: Date.now() + (7 * 24 * 60 * 60 * 1000), // 7 days
-          loginTime: new Date().toISOString()
-        };
-        
-        setUser(userData);
+  const login = async (email, password) => {
+    try {
+      const response = await fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        localStorage.setItem('auth_token', data.token);
+        setUser(data.user);
         setIsAuthenticated(true);
-        return { success: true, message: 'Login successful!' };
+        return { success: true, message: data.message };
       } else {
-        return { success: false, message: 'Invalid password' };
+        return { success: false, message: data.message };
       }
-    } else {
-      return { success: false, message: 'User not found. Please sign up first.' };
+    } catch (error) {
+      console.error('Login error:', error);
+      return { success: false, message: 'Failed to connect to server' };
     }
   };
 
   // Signup function
-  const signup = (name, email, password) => {
-    // Get registered users from localStorage
-    const registeredUsers = getFromLocalStorage(STORAGE_KEYS.REGISTERED_USERS, []);
-    
-    // Check if user already exists
-    if (registeredUsers.some(u => u.email === email)) {
-      return { success: false, message: 'User already exists with this email' };
+  const signup = async (name, email, password) => {
+    try {
+      const response = await fetch(`${API_URL}/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, password })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        localStorage.setItem('auth_token', data.token);
+        setUser(data.user);
+        setIsAuthenticated(true);
+        return { success: true, message: data.message };
+      } else {
+        return { success: false, message: data.message };
+      }
+    } catch (error) {
+      console.error('Signup error:', error);
+      return { success: false, message: 'Failed to connect to server' };
     }
-    
-    // Create new user
-    const newUser = {
-      id: `user_${Date.now()}`,
-      email,
-      password, // In a real app, this should be hashed
-      name,
-      createdAt: new Date().toISOString()
-    };
-    
-    // Save to registered users
-    registeredUsers.push(newUser);
-    saveToLocalStorage(STORAGE_KEYS.REGISTERED_USERS, registeredUsers);
-    
-    return { success: true, message: 'Account created successfully!' };
+  };
+
+  // Check if email exists
+  const checkEmail = async (email) => {
+    try {
+      const response = await fetch(`${API_URL}/check-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
+
+      const data = await response.json();
+      return data.exists;
+    } catch (error) {
+      console.error('Check email error:', error);
+      return false;
+    }
   };
 
   // Logout function
   const logout = () => {
     setUser(null);
     setIsAuthenticated(false);
-    removeFromLocalStorage(STORAGE_KEYS.USER_SESSION);
+    localStorage.removeItem('auth_token');
   };
 
   // Update user profile
@@ -103,14 +132,6 @@ export const AuthProvider = ({ children }) => {
     if (user) {
       const updatedUser = { ...user, ...updates };
       setUser(updatedUser);
-      
-      // Also update in registered users
-      const registeredUsers = getFromLocalStorage(STORAGE_KEYS.REGISTERED_USERS, []);
-      const updatedUsers = registeredUsers.map(u => 
-        u.id === user.id ? { ...u, ...updates } : u
-      );
-      saveToLocalStorage(STORAGE_KEYS.REGISTERED_USERS, updatedUsers);
-      
       return { success: true, message: 'Profile updated successfully!' };
     }
     return { success: false, message: 'No user logged in' };
@@ -118,19 +139,13 @@ export const AuthProvider = ({ children }) => {
 
   // Check if session is valid
   const isSessionValid = () => {
-    if (!user || !user.sessionExpiry) return false;
-    return user.sessionExpiry > Date.now();
+    return isAuthenticated && user !== null;
   };
 
-  // Extend session
+  // Extend session (token refresh could be implemented here)
   const extendSession = () => {
-    if (user) {
-      const updatedUser = {
-        ...user,
-        sessionExpiry: Date.now() + (7 * 24 * 60 * 60 * 1000) // Extend by 7 days
-      };
-      setUser(updatedUser);
-    }
+    // Token refresh logic can be added here if needed
+    console.log('Session extended');
   };
 
   const value = {
@@ -140,6 +155,7 @@ export const AuthProvider = ({ children }) => {
     login,
     signup,
     logout,
+    checkEmail,
     updateProfile,
     isSessionValid,
     extendSession
