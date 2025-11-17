@@ -27,7 +27,7 @@ const PaymentButton = ({ amount, orderId, onSuccess, onFailure, disabled = false
     // Create order on backend
     const createOrder = async (amount) => {
         try {
-            const response = await fetch('http://localhost:5000/api/create-order', {
+            const response = await fetch('/api/create-order', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const PaymentButton = ({ amount, orderId, onSuccess, onFailure, disabled = false
     // Verify payment on backend
     const verifyPayment = async (paymentData) => {
         try {
-            const response = await fetch('http://localhost:5000/api/verify-payment', {
+            const response = await fetch('/api/verify-payment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

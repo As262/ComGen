@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const API_URL = 'http://localhost:5000/api/auth';
+// Using relative URL since backend and frontend are on same domain
+const API_URL = '/api/auth';
 
 // Create Auth Context
 const AuthContext = createContext();

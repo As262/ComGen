@@ -1,0 +1,21 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "password": "$2b$10$rUEJE0DZawdy3wa2tJSV4uZ.Hu.U3IweCAFS7RwUo8/Nc3NG.bULK",
+      "created_at": "2025-11-17T07:26:54.033Z",
+      "updated_at": "2025-11-17T07:26:54.033Z"
+    },
+    {
+      "id": 2,
+      "name": "Avinav",
+      "email": "avinavsaini336@gmail.com",
+      "password": "$2b$10$HvEm5utcgCm2xEOWJU93IO/xfVGbtcsUUFetdhsEX6UGuJmEknGqq",
+      "created_at": "2025-11-17T07:32:11.027Z",
+      "updated_at": "2025-11-17T07:32:11.027Z"
+    }
+  ],
+  "nextId": 3
+}

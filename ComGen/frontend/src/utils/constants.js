@@ -1,7 +1,7 @@
 // App-wide constants
 
-// API Configuration
-export const API_BASE_URL = 'http://localhost:5000/api';
+// API Configuration - Using relative URL since backend and frontend are on same domain
+export const API_BASE_URL = '/api';
 
 // Route paths
 export const ROUTES = {
