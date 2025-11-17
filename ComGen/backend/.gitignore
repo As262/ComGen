@@ -1,6 +1,5 @@
 # Dependencies
 node_modules/
-package-lock.json
 
 # Environment Variables
 .env
@@ -8,6 +7,7 @@ package-lock.json
 .env.*.local
 
 # Database
+users.json
 *.sqlite
 *.db
 
