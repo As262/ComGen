@@ -7,7 +7,6 @@ node_modules/
 .env.*.local
 
 # Database
-users.json
 *.sqlite
 *.db
 
